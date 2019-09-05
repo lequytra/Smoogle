@@ -2,10 +2,10 @@ from Graph import Graph
 
 class PageRank:
 
-	def __init__(self, graph, damping_factor=0.31):
+	def __init__(self, graph=Graph(), damping_factor=0.12):
 		self.graph = graph
 		self.damping_factor = damping_factor
-		self.has_seen = set([])
+		self.has_seen = None
 
 	def insert_node(self, node):
 		self.graph.insert_node(node)
@@ -32,38 +32,46 @@ class PageRank:
 	def calculate_rank(self, root):
 		E = float((1 - self.damping_factor))/float(self.graph.size()) 
 		score = 0
-		weight, _, adj_list = self.graph.graph[root]
-		self.has_seen = self.has_seen.add(root)
+		weight, _, adj_list = self.get(root)
+		if self.has_seen:
+			self.has_seen.add(root)
+		else:
+			self.has_seen = set([root])
 		for v in adj_list:
-
-			curr = self.calculate_rank(v) if v not in self.has_seen else self.graph.graph[v][0]
-			if self.graph.graph[v][1] != 0:
-				curr /= self.graph.graph[v][1]
+			if v not in self.has_seen:
+				curr = self.calculate_rank(v) 
+			else:
+				curr = self.get(v)[0]
+			if self.get(v)[1] != 0:
+				curr /= self.get(v)[1]
 				score += curr
 
 		self.graph.graph[root] = (E + score, _, adj_list)
-		print("Updated {}".format(root))
 
 		return score
+
+	def get(self, node):
+		return self.graph.get(node)
 
 	def iterate(self, root, num_iter=4):
 
 		for i in range(4):
-			self.has_seen = set([])
-			print("Iteration {}:".format(i + 1))
+			# Reset has_seen set
+			self.has_seen = set()
+			print("Iteration {}: ".format(i + 1))
 			self.calculate_rank(root)
 			self.print_info()
 
 		return
 
-graph = Graph(default_weight=0.2)
-graph.insert_edge('A', 'B')
-graph.insert_edge('A', 'E')
-graph.insert_edge('B', 'D')
-graph.insert_edge('B', 'C')
-graph.insert_edge('D', 'C')
-graph.insert_edge('C', 'A')
-p = PageRank(graph)
-p.iterate('A')
 
+p = PageRank()
+p.insert_edge('A', 'B')
+p.insert_edge('A', 'E')
+p.insert_edge('B', 'D')
+p.insert_edge('B', 'C')
+p.insert_edge('C', 'A')
+p.insert_edge('D', 'C')
+
+p.iterate('A')
 

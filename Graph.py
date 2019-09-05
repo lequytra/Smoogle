@@ -5,16 +5,19 @@ class Graph:
 		self.N = 0
 
 	def insert_edge(self, parent, child):
-		if parent in self.graph:
-			_, outlinks, adj_list = self.graph[parent]
-			adj_list += child
-			self.graph[parent] = (_, outlinks + 1, adj_list)
+		if child in self.graph:
+			_, outlinks, adj_list = self.graph[child]
+			adj_list += [parent]
+			self.graph[child] = (_, outlinks, adj_list)
 		else:
-			self.graph[parent] = (self.default_weight, 1, [child])
+			self.graph[child] = (self.default_weight, 1, [parent])
 			self.N += 1
 
-		if child not in self.graph:
-			self.graph[child] = (self.default_weight, 1, [])
+		if parent in self.graph:
+			_, outlinks, ls = self.graph[parent]
+			self.graph[parent] = (_, outlinks + 1, ls)
+		else: 
+			self.graph[parent] = (self.default_weight, 1, [])
 			self.N += 1
 
 	def insert_node(self, node):
@@ -23,13 +26,15 @@ class Graph:
 			self.N += 1
 
 	def remove_edge(self, parent, child):
-		if parent in self.graph:
-			try:
-				_, outlinks, adj_list = self.graph[parent]
-				self.graph[parent] = (_, outlinks - 1, adj_list.remove(child))
-				return True
+		if child in self.graph:
 
-			except ValueError:
+			_, n, adj_list = self.graph[child]
+			if parent in adj_list:
+				self.graph[child][2] = (_, n, self.graph[child].remove(parent))
+				weight, n_parent, ls = self.get(parent)
+				self.graph[parent] =  (weight, n_parent - 1, ls)
+				return True
+			else:
 				return False
 
 		else:
@@ -37,15 +42,12 @@ class Graph:
 
 	def remove_node(self, node):
 		if node in self.graph:
-
+			_, _, adj_list = self.graph[node]
 			del self.graph[node]
 
-			for k in self.graph.keys():
-				_, outlinks, adj_list = self.graph[k]
-
-				if node in adj_list:
-					adj_list.remove(node)
-					self.graph[k] = (_, outlinks - 1, adj_list)
+			for k in adj_list:
+				weight, n, ls = self.get(k)
+				self.graph[k] = (weight, n - 1, ls)
 
 			self.N -= 1
 
@@ -56,6 +58,14 @@ class Graph:
 
 	def size(self):
 		return self.N
+
+	def get(self, node):
+		return self.graph[node]
+
+	def reset_weight(self):
+		self.default_weight = 1/self.N
+		for item in self.graph.keys():
+			self.graph[item][0] = self.default_weight
 
 	def get_info(self, node):
 		if node in self.graph:
