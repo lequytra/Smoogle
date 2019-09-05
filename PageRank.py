@@ -31,15 +31,15 @@ class PageRank:
 	def calculate_rank(self, root):
 		E = float((1 - self.damping_factor))/float(self.graph.size()) 
 		score = 0
-		weight, _, adj_list = self.graph[root]
+		weight, _, adj_list = self.graph.graph[root]
 		has_seen = set([root])
 		for v in adj_list:
 			curr = self.calculate_rank(v) if v not in has_seen else self.graph[v][0]
-			if self.graph[v][1] != 0:
-				curr /= self.graph[v][1]
+			if self.graph.graph[v][1] != 0:
+				curr /= self.graph.graph[v][1]
 				score += curr
 
-		self.graph[root] = (score, _, adj_list)
+		self.graph.graph[root] = (score, _, adj_list)
 
 
 		return score
@@ -51,7 +51,7 @@ class PageRank:
 			self.print_info()
 
 		return
-		
+
 
 
 

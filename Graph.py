@@ -1,5 +1,5 @@
 class Graph:
-	def __init__(self, default_weight):
+	def __init__(self, default_weight=0.2):
 		self.graph = dict()
 		self.default_weight = default_weight
 		self.N = 0
