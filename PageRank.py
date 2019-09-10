@@ -46,7 +46,7 @@ class PageRank:
 				curr /= self.get(v)[1]
 				score += curr
 
-		self.graph.graph[root] = (E + score, _, adj_list)
+		self.graph.graph[root] = (E + self.damping_factor*score, _, adj_list)
 
 		return score
 
@@ -74,4 +74,5 @@ p.insert_edge('C', 'A')
 p.insert_edge('D', 'C')
 
 p.iterate('A')
+p.iterate('E')
 
