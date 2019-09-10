@@ -1,78 +1,77 @@
+import numpy as np 
 from Graph import Graph
 
 class PageRank:
 
-	def __init__(self, graph=Graph(), damping_factor=0.12):
-		self.graph = graph
-		self.damping_factor = damping_factor
-		self.has_seen = None
+	def __init__(self, graph, damping_factor=0.32, epsilon=0.00001):
+		self.N = graph.size()
 
-	def insert_node(self, node):
-		self.graph.insert_node(node)
+		graph = sorted(graph.graph.items(), key= lambda item: item[0])
+		_, val = zip(*graph)
+		self.prev, self.M, self.neighbors = zip(*val)
+		self.prev = np.expand_dims(self.prev, axis=1)
+		self.M = np.expand_dims(self.M, axis=1)
+		# Replace all the danling links to be connected
+		# to all other pages in the graph
+		self.M[self.M == 0] = self.N - 1
+		self.d = damping_factor
+		self.curr = self.prev
+		self.epsilon = epsilon
 
-	def insert_edge(self, parent, child):
-		self.graph.insert_edge(parent, child)
+	def calculate_score(self, A=None):
 
-	def remove_node(self, node):
-		self.graph.remove_node(node)
+		if A.all() == None:
+			A = self.build_A()
 
-	def remove_edge(self, parent, child):
-		self.graph.remove_edge(parent, child)
+		self.prev = self.curr
+		M = A/self.M
+		# print(M)
+		# print("Curr weights")
+		# print(M*self.prev)
+		# print("Curr matrix")
+		# print((1 - self.d)/self.N + self.d*(M*self.prev))
+		curr = (1 - self.d)/self.N + np.sum(self.d*(M*self.prev), axis=0)
+		self.curr = np.expand_dims(curr, axis=0)
 
-	def print_info(self, node=None):
-		if node != None:
-			weight, _ = self.graph.get_info(node)
-			print("Page {} has the weight {}\n".format(node, weight))
+		epsilon = np.sum(np.absolute(self.curr - self.prev))
 
-		else:
-			for node in self.graph.graph.keys():
-				weight, _ = self.graph.get_info(node)
-				print("Page {} has the weight {}\n".format(node, weight))
+		return epsilon
 
-	def calculate_rank(self, root):
-		E = float((1 - self.damping_factor))/float(self.graph.size()) 
-		score = 0
-		weight, _, adj_list = self.get(root)
-		if self.has_seen:
-			self.has_seen.add(root)
-		else:
-			self.has_seen = set([root])
-		for v in adj_list:
-			if v not in self.has_seen:
-				curr = self.calculate_rank(v) 
-			else:
-				curr = self.get(v)[0]
-			if self.get(v)[1] != 0:
-				curr /= self.get(v)[1]
-				score += curr
+	def iterate(self, max_iter=None):
+		A = self.build_A()
 
-		self.graph.graph[root] = (E + self.damping_factor*score, _, adj_list)
+		diff = np.Inf
+		i = 0
+		if max_iter == None:
+			max_iter = np.Inf
 
-		return score
+		while diff >= self.epsilon and i < max_iter:
+			diff = self.calculate_score(A=A)
+			i += 1
+			print(self.curr)
+		return self.curr
 
-	def get(self, node):
-		return self.graph.get(node)
+	def build_A(self):
+		A = np.zeros((self.N, self.N))
 
-	def iterate(self, root, num_iter=4):
+		for i in range(self.N):
+			# if the current node has no outlinks
+			if self.M[i] == self.N - 1:
+				# it is assumed that it is connected to
+				# all other pages
+				A[i, :] = 1
+				A[i, i] = 0
+			# Set adjacency
+			A[[node for node in self.neighbors[i]], i] = 1
 
-		for i in range(4):
-			# Reset has_seen set
-			self.has_seen = set()
-			print("Iteration {}: ".format(i + 1))
-			self.calculate_rank(root)
-			self.print_info()
+		return A
 
-		return
-
-
-p = PageRank()
-p.insert_edge('A', 'B')
-p.insert_edge('A', 'E')
-p.insert_edge('B', 'D')
-p.insert_edge('B', 'C')
-p.insert_edge('C', 'A')
-p.insert_edge('D', 'C')
-
-p.iterate('A')
-p.iterate('E')
-
+g = Graph()
+g.insert_edge(0, 1)
+g.insert_edge(0, 4)
+g.insert_edge(1, 2)
+g.insert_edge(1, 3)
+g.insert_edge(2, 0)
+g.insert_edge(3, 2)
+p = PageRank(g)
+p.iterate(max_iter=None)
