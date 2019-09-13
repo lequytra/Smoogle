@@ -1,5 +1,16 @@
-# The following code is derive from Geeks for Geeks
+# The following code is derived from Geeks for Geeks
 # Infix to Postfix article (https://www.geeksforgeeks.org/stack-set-2-infix-to-postfix/)
+
+class Et:
+    """
+        Class Et for a node in the binary expression tree
+    """
+
+    # Constructor to create a node
+    def __init__(self, value):
+        self.value = value
+        self.left = None
+        self.right = None
 
 
 class Conversion:
@@ -33,10 +44,14 @@ class Conversion:
     def is_operand(self, op):
         return not (op == 'AND' or op == 'OR' or op == 'NOT')
 
-    def infix_to_postfix(self, exp):
+    def infix_to_postfix(self, exp, return_type='list'):
         """
             A method to converts the given infix expression to
             postfix expression
+        :param exp: a string of infix expression
+        :param return_type: a string specifying the type of the returned expression
+                            (either list of words or string)
+        :return: postfix expression of the input string
         """
         # Split the expression strings to a list of words
         exp = exp + ')'
@@ -84,9 +99,72 @@ class Conversion:
         while not self.is_empty():
             self.output.append(self.pop())
 
-        return " ".join(self.output)
+        if return_type == 'list':
+            return self.output
+        else:
+            return " ".join(self.output)
+
+    # Returns root of constructed tree for
+    # given postfix expression
+    def constructTree(self, postfix):
+        """
+            Method takes a string or list of words of postfix and build
+            a binary expression tree
+
+        :param postfix: string or list of words
+        :return: t: root of the binary expression tree
+        """
+        if type(postfix) == str:
+            postfix_ls = postfix.split()
+        else:
+            postfix_ls = postfix
+
+        stack = []
+
+        # Traverse through every character of input expression
+        for word in postfix_ls:
+
+            # if operand, simply push into stack
+            if self.is_operand(word):
+                t = Et(word)
+                stack.append(t)
+            # If the current  Operator
+            else:
+                # Pop two top nodes
+                t = Et(word)
+                t1 = stack.pop()
+                t2 = stack.pop()
+
+                # make them children
+                t.right = t1
+                t.left = t2
+
+                # Add this subexpression to stack
+                stack.append(t)
+
+                # Only element  will be the root of expression tree
+        t = stack.pop()
+
+        return t
+
+    # A utility function to do inorder traversal
+    def inorder(self, t):
+        """
+            This method is to print out the inorder traversal of the
+            current binary expression tree.
+        :param t: a pointer to the root of the tree
+        :return: nothing
+        """
+        if t is not None:
+            self.inorder(t.left)
+            print(t.value)
+            self.inorder(t.right)
 
 
 c = Conversion()
 s = "(flower OR boobs) AND chair AND (love OR blanket) NOT pillow"
-print(c.infix_to_postfix(s))
+postfix = c.infix_to_postfix(s)
+print(postfix)
+tree = c.constructTree(postfix)
+print("My tree looking good!!!")
+c.inorder(tree)
