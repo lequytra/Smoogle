@@ -5,7 +5,7 @@ class Graph:
 		self.N = 0
 
 	def insert_edge(self, parent, child):
-		# If the incoming page is alreadyin the graph
+		# If the incoming page is already in the graph
 		if child in self.graph:
 			_, outlinks, adj_list = self.graph[child]
 			# Add parent to be one of the incoming page
