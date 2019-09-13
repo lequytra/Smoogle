@@ -10,6 +10,7 @@ class Conversion:
         # This array is used a stack  
         self.array = []
         self.output = []
+        self.precedence = {'AND': 2, 'NOT': 1, 'OR': 0}
 
     def is_empty(self) -> bool:
         return True if self.top == -1 else False
@@ -30,7 +31,7 @@ class Conversion:
         self.array.append(item)
 
     def is_operand(self, op):
-        return not (op == 'and' or op == 'or' or op == 'not')
+        return not (op == 'AND' or op == 'OR' or op == 'NOT')
 
     def infix_to_postfix(self, exp):
         """
@@ -38,25 +39,24 @@ class Conversion:
             postfix expression
         """
         # Split the expression strings to a list of words
-        exp = exp.lower()
+        exp = exp + ')'
         exp_ls = exp.split()
 
+        self.push('(')
         # Iterate over the expression for conversion
         for i in exp_ls:
-            # If the current word is an operand,
-            # add it to output
-            if self.is_operand(i):
-                self.output.append(i)
 
             # If the character is an '(', push it to stack
-            elif i[0] == '(':
+            if i[0] == '(':
                 self.push('(')
-                self.push(i[1:])
+                # Append the operand to the output
+                self.output.append(i[1:])
 
             # If the scanned character is an ')', pop and output
             # from the stack until a '(' is found
             elif i[-1] == ')':
-                self.push(i[:-1])
+                a = i[:-1]
+                self.output.append(a)
                 while (not self.is_empty()) and self.peek() != '(':
                     a = self.pop()
                     self.output.append(a)
@@ -64,11 +64,20 @@ class Conversion:
                     return ""
                 else:
                     self.pop()
+            # If the current word is an operand,
+            # add it to output
+            elif self.is_operand(i):
+                self.output.append(i)
 
             # An operator is encountered
             else:
-                while not self.is_empty():
-                    self.output.append(self.pop())
+                while not self.is_empty() and self.peek() != '(':
+                    a = self.peek()
+                    if self.precedence[a] >= self.precedence[i]:
+                        self.output.append(a)
+                        self.pop()
+                    else:
+                        break
 
                 self.push(i)
 
