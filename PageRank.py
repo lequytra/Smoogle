@@ -1,5 +1,6 @@
 import numpy as np 
 from Graph import Graph
+import os
 
 class PageRank:
 
@@ -65,6 +66,33 @@ class PageRank:
 			A[[node for node in self.neighbors[i]], i] = 1
 
 		return A
+
+	def save_score(self, filename=None, path=None):
+		"""
+			A method to save the current scores to a npy file.
+		:param path: the path to save file
+					if None, it will store the file in the current
+					directory
+		:return: None
+		"""
+
+		if not filename:
+			filename = "PageRank_score"
+
+		filename += 'npy'
+
+		if not path:
+			path = os.getcwd()
+		path = os.path.join(path, filename)
+
+		with open(path, 'w') as f:
+			np.save(f, self.curr, allow_pickle=False)
+
+		return
+
+
+
+
 
 g = Graph()
 g.insert_edge(0, 1)

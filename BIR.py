@@ -1,12 +1,13 @@
 from collections import defaultdict, Counter
 import numpy as np
 from functools import reduce
-import nltk
+
 
 class Doc:
 	def __init__(self, id, term_freq, most_common, normalization_factor=0.5):
 		self.doc_id = id
-		self.aug_freq = normalization_factor + (1 - normalization_factor)*(term_freq/most_common)
+		self.aug_freq = normalization_factor + (1 - normalization_factor) * (term_freq / most_common)
+
 
 class BIR:
 	def __init__(self):
@@ -15,18 +16,18 @@ class BIR:
 
 	def insert_document(self, doc, idx):
 		"""
-            A method to update the current Inverted Index table
-            as a new document is inserted.
+			A method to update the current Inverted Index table
+			as a new document is inserted.
 
-            Each term is associated with a posting list, containing the
-            documents it is in.
+			Each term is associated with a posting list, containing the
+			documents it is in.
 
 
 
-            Params:
-                - doc: A list of words contained in the document.
-                - idx: The unique index assigned to the document.
-        """
+			Params:
+				- doc: A list of words contained in the document.
+				- idx: The unique index assigned to the document.
+		"""
 		c = Counter(doc)
 		most_freq = c.most_common(1)[0][1]
 
@@ -40,7 +41,7 @@ class BIR:
 
 			else:
 				f = 1
-				posting = [document]
+				postings = [document]
 
 			self.dictionary[term] = (f, postings)
 
@@ -51,12 +52,12 @@ class BIR:
 
 	def intersect(self, terms):
 		"""
-            Return the document intersections of
-            a list of terms
+			Return the document intersections of
+			a list of terms
 
-            Param:
-                - Terms: Array of terms/words
-        """
+			Param:
+				- Terms: Array of terms/words
+		"""
 
 		# Find the frequency for all terms, in ascending order
 		terms = self._get_freq(terms)
@@ -76,9 +77,9 @@ class BIR:
 			Return the document intersections of
 			a list of terms
 
-            Param:
-                - Terms: Array of terms/words
-        """
+			Param:
+				- Terms: Array of terms/words
+		"""
 
 		return reduce(np.union1d, [self.dictionary[t][1] for t in terms])
 
@@ -87,9 +88,9 @@ class BIR:
 
 	def _get_freq(self, terms):
 		"""
-            Return a list of term-freq pair,
-            sorted by frequency
-        """
+			Return a list of term-freq pair,
+			sorted by frequency
+		"""
 		res = []
 		for t in terms:
 			freq, _ = self.dictionary[t]
@@ -98,6 +99,18 @@ class BIR:
 		res.sort(key=lambda x: x[1])
 
 		return res
+
+	def get_posting(self, term):
+		"""
+			Return a list of postings for the terms
+		:param term: a string represent the term
+		:return: postings
+		"""
+
+		if term in self.dictionary:
+			return [doc.doc_id for doc in self.dictionary[term][1]]
+		else:
+			return []
 
 	def get_term(self, term):
 

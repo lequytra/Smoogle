@@ -13,6 +13,10 @@ class Et:
         self.right = None
 
 
+def is_operand(op):
+    return not (op == 'AND' or op == 'OR' or op == 'NOT')
+
+
 class Conversion:
 
     # Constructor to initialize the class variables
@@ -40,9 +44,6 @@ class Conversion:
     def push(self, item) -> None:
         self.top += 1
         self.array.append(item)
-
-    def is_operand(self, op):
-        return not (op == 'AND' or op == 'OR' or op == 'NOT')
 
     def infix_to_postfix(self, exp, return_type='list'):
         """
@@ -81,7 +82,7 @@ class Conversion:
                     self.pop()
             # If the current word is an operand,
             # add it to output
-            elif self.is_operand(i):
+            elif is_operand(i):
                 self.output.append(i)
 
             # An operator is encountered
@@ -125,7 +126,7 @@ class Conversion:
         for word in postfix_ls:
 
             # if operand, simply push into stack
-            if self.is_operand(word):
+            if is_operand(word):
                 t = Et(word)
                 stack.append(t)
             # If the current  Operator
@@ -159,6 +160,8 @@ class Conversion:
             self.inorder(t.left)
             print(t.value)
             self.inorder(t.right)
+
+
 
 
 c = Conversion()
