@@ -10,9 +10,12 @@ class PageRank:
 		graph = sorted(graph.graph.items(), key= lambda item: item[0])
 		_, val = zip(*graph)
 		self.prev, self.M, self.neighbors = zip(*val)
+
+		del graph, _, val
+
 		self.prev = np.expand_dims(self.prev, axis=1)
 		self.M = np.expand_dims(self.M, axis=1)
-		# Replace all the danling links to be connected
+		# Replace all the dangling links to be connected
 		# to all other pages in the graph
 		self.M[self.M == 0] = self.N - 1
 		self.d = damping_factor
@@ -70,6 +73,7 @@ class PageRank:
 	def save_score(self, filename=None, path=None):
 		"""
 			A method to save the current scores to a npy file.
+		:param filename: name of the score file.
 		:param path: the path to save file
 					if None, it will store the file in the current
 					directory
@@ -94,12 +98,12 @@ class PageRank:
 
 
 
-g = Graph()
-g.insert_edge(0, 1)
-g.insert_edge(0, 4)
-g.insert_edge(1, 2)
-g.insert_edge(1, 3)
-g.insert_edge(2, 0)
-g.insert_edge(3, 2)
-p = PageRank(g)
-p.iterate(max_iter=None)
+# g = Graph()
+# g.insert_edge(0, 1)
+# g.insert_edge(0, 4)
+# g.insert_edge(1, 2)
+# g.insert_edge(1, 3)
+# g.insert_edge(2, 0)
+# g.insert_edge(3, 2)
+# p = PageRank(g)
+# p.iterate(max_iter=None)

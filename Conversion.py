@@ -164,10 +164,10 @@ class Conversion:
 
 
 
-c = Conversion()
-s = "(flower OR boobs) AND chair AND (love OR blanket) NOT pillow"
-postfix = c.infix_to_postfix(s)
-print(postfix)
-tree = c.constructTree(postfix)
-print("My tree looking good!!!")
-c.inorder(tree)
+# c = Conversion()
+# s = "(flower OR boobs) AND chair AND (love OR blanket) NOT pillow"
+# postfix = c.infix_to_postfix(s)
+# print(postfix)
+# tree = c.constructTree(postfix)
+# print("My tree looking good!!!")
+# c.inorder(tree)
