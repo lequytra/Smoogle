@@ -1,6 +1,7 @@
 from Conversion import Conversion, is_operand, Et
 import numpy as np
 import pickle as p
+from ProcessText import ProcessText
 
 
 class Session:
@@ -18,7 +19,7 @@ class Session:
         except FileNotFoundError:
             print("The input path is not valid.")
 
-    def eval(self, query):
+    def advance_search(self, query):
         """
             Method takes in a query and evaluate it, retrieve relevant
             documents and rank it based on the PageRank scores.
@@ -29,8 +30,8 @@ class Session:
         c = Conversion()
 
         if "AND" not in query and "NOT" not in query and "OR" not in query:
-            ls = query.split()
-            return self.BIR.intersect(ls)
+            self.search(query)
+            return self.BIR.intersect()
 
         postfix = c.infix_to_postfix(query)
         root = c.constructTree(postfix)
@@ -44,9 +45,17 @@ class Session:
 
         pairs = [(f, s) for f, s in zip(found, found_scores)]
 
-        pairs.sort(key=lambda x : x[1])
+        pairs.sort(key=lambda x: x[1])
 
         return pairs
+
+    def search(self, query):
+        # TODO: Implement ranking documents on importance of the terms it contains
+        pt = ProcessText(query)
+
+        scores, kw = pt.extract_keywords(stem=True, return_score=True)
+
+        return
 
     def _solve(self, root):
 
