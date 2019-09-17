@@ -1,4 +1,5 @@
 import numpy as np
+from Graph import Graph
 import os
 
 
@@ -100,12 +101,12 @@ class PageRank:
 
         return
 
-# g = Graph()
-# g.insert_edge(0, 1)
-# g.insert_edge(0, 4)
-# g.insert_edge(1, 2)
-# g.insert_edge(1, 3)
-# g.insert_edge(2, 0)
-# g.insert_edge(3, 2)
-# p = PageRank(g)
-# p.iterate(max_iter=None)
+g = Graph()
+g.insert_edge(0, 1)
+g.insert_edge(0, 4)
+g.insert_edge(1, 2)
+g.insert_edge(1, 3)
+g.insert_edge(2, 0)
+g.insert_edge(3, 2)
+p = PageRank(g)
+p.iterate(max_iter=None)
