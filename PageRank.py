@@ -25,7 +25,8 @@ class PageRank:
         # to all other pages in the graph
         self.M[self.M == 0] = self.N - 1
         self.d = damping_factor
-        self.curr = self.prev
+        # At initialization, current weight is equal to the previous weights
+        self.curr = np.copy(self.prev)
         self.epsilon = epsilon
 
     def calculate_score(self, A=None):
@@ -33,7 +34,7 @@ class PageRank:
         if A.all() is None:
             A = self.build_A()
 
-        self.prev = self.curr
+        self.prev = np.copy(self.curr)
         M = A / self.M
 
         curr = (1 - self.d) / self.N + np.sum(self.d * (M * self.prev), axis=0)
@@ -74,13 +75,13 @@ class PageRank:
 
     def save_score(self, filename=None, path=None):
         """
-			A method to save the current scores to a npy file.
-		:param filename: name of the score file.
-		:param path: the path to save file
-					if None, it will store the file in the current
-					directory
-		:return: None
-		"""
+            A method to save the current scores to a npy file.
+        :param filename: name of the score file.
+        :param path: the path to save file
+                    if None, it will store the file in the current
+                    directory
+        :return: None
+        """
 
         if not filename:
             filename = "PageRank_score"
@@ -90,6 +91,9 @@ class PageRank:
         if not path:
             path = os.getcwd()
         path = os.path.join(path, filename)
+        self.curr = np.squeeze(self.curr)
+
+        assert self.curr.shape == (self.N,)
 
         with open(path, 'w') as f:
             np.save(f, self.curr, allow_pickle=False)
