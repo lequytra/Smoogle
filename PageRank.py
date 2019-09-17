@@ -1,77 +1,79 @@
-import numpy as np 
-from Graph import Graph
+import numpy as np
 import os
+
 
 class PageRank:
 
-	def __init__(self, graph, damping_factor=0.32, epsilon=0.00001):
-		self.N = graph.size()
+    def __init__(self, graph, prev_path=None, damping_factor=0.32, epsilon=0.00001, default_weight=0.2):
+        self.N = graph.size()
 
-		graph = sorted(graph.graph.items(), key= lambda item: item[0])
-		_, val = zip(*graph)
-		self.prev, self.M, self.neighbors = zip(*val)
+        if not prev_path:
+            self.prev = np.full(shape=(self.N,), fill_value=default_weight)
+        else:
+            self.prev = np.load(file=prev_path)
 
-		del graph, _, val
+        graph = sorted(graph.graph.items(), key=lambda item: item[0])
+        _, val = zip(*graph)
 
-		self.prev = np.expand_dims(self.prev, axis=1)
-		self.M = np.expand_dims(self.M, axis=1)
-		# Replace all the dangling links to be connected
-		# to all other pages in the graph
-		self.M[self.M == 0] = self.N - 1
-		self.d = damping_factor
-		self.curr = self.prev
-		self.epsilon = epsilon
+        self.M, self.neighbors = zip(*val)
 
-	def calculate_score(self, A=None):
+        del graph, _, val
 
-		if A.all() == None:
-			A = self.build_A()
+        self.prev = np.expand_dims(self.prev, axis=1)
+        self.M = np.expand_dims(self.M, axis=1)
+        # Replace all the dangling links to be connected
+        # to all other pages in the graph
+        self.M[self.M == 0] = self.N - 1
+        self.d = damping_factor
+        self.curr = self.prev
+        self.epsilon = epsilon
 
-		self.prev = self.curr
-		M = A/self.M
-		# print(M)
-		# print("Curr weights")
-		# print(M*self.prev)
-		# print("Curr matrix")
-		# print((1 - self.d)/self.N + self.d*(M*self.prev))
-		curr = (1 - self.d)/self.N + np.sum(self.d*(M*self.prev), axis=0)
-		self.curr = np.expand_dims(curr, axis=0)
+    def calculate_score(self, A=None):
 
-		epsilon = np.sum(np.absolute(self.curr - self.prev))
+        if A.all() is None:
+            A = self.build_A()
 
-		return epsilon
+        self.prev = self.curr
+        M = A / self.M
 
-	def iterate(self, max_iter=None):
-		A = self.build_A()
+        curr = (1 - self.d) / self.N + np.sum(self.d * (M * self.prev), axis=0)
+        self.curr = np.expand_dims(curr, axis=0)
 
-		diff = np.Inf
-		i = 0
-		if max_iter == None:
-			max_iter = np.Inf
+        epsilon = np.sum(np.absolute(self.curr - self.prev))
 
-		while diff >= self.epsilon and i < max_iter:
-			diff = self.calculate_score(A=A)
-			i += 1
-			print(self.curr)
-		return self.curr
+        return epsilon
 
-	def build_A(self):
-		A = np.zeros((self.N, self.N))
+    def iterate(self, max_iter=None):
+        A = self.build_A()
 
-		for i in range(self.N):
-			# if the current node has no outlinks
-			if self.M[i] == self.N - 1:
-				# it is assumed that it is connected to
-				# all other pages
-				A[i, :] = 1
-				A[i, i] = 0
-			# Set adjacency
-			A[[node for node in self.neighbors[i]], i] = 1
+        diff = np.Inf
+        i = 0
+        if max_iter is None:
+            max_iter = np.Inf
 
-		return A
+        while diff >= self.epsilon and i < max_iter:
+            diff = self.calculate_score(A=A)
+            i += 1
+            print(self.curr)
+        return self.curr
 
-	def save_score(self, filename=None, path=None):
-		"""
+    def build_A(self):
+        A = np.zeros((self.N, self.N))
+
+        for i in range(self.N):
+            # if the current node has no outlinks
+            if self.M[i] == self.N - 1:
+                # it is assumed that it is connected to
+                # all other pages
+                A[i, :] = 1
+                A[i, i] = 0
+            # Set adjacency
+            A[[node for node in self.neighbors[i]], i] = 1
+
+        return A
+
+    def save_score(self, filename=None, path=None):
+        """
 			A method to save the current scores to a npy file.
 		:param filename: name of the score file.
 		:param path: the path to save file
@@ -80,23 +82,19 @@ class PageRank:
 		:return: None
 		"""
 
-		if not filename:
-			filename = "PageRank_score"
+        if not filename:
+            filename = "PageRank_score"
 
-		filename += 'npy'
+        filename += 'npy'
 
-		if not path:
-			path = os.getcwd()
-		path = os.path.join(path, filename)
+        if not path:
+            path = os.getcwd()
+        path = os.path.join(path, filename)
 
-		with open(path, 'w') as f:
-			np.save(f, self.curr, allow_pickle=False)
+        with open(path, 'w') as f:
+            np.save(f, self.curr, allow_pickle=False)
 
-		return
-
-
-
-
+        return
 
 # g = Graph()
 # g.insert_edge(0, 1)
