@@ -1,3 +1,7 @@
+import pickle as p
+import os
+
+
 class Graph:
     def __init__(self):
         self.graph = dict()
@@ -84,3 +88,14 @@ class Graph:
         else:
             print("Node is not in the graph.")
             return None
+
+    def save_graph(self, path=None):
+        if not path:
+            path = os.getcwd()
+
+        path = os.path.join(path, 'graph.p')
+
+        with open(path, 'w') as f:
+            p.dump(self)
+
+        return True
