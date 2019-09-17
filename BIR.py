@@ -10,9 +10,6 @@ class Doc:
         self.term_freq = term_freq
         self.most_common = most_common
 
-    def calc_aug_freq(self):
-        return 1 / self.alpha + (1 - 1 / self.alpha) * (self.term_freq / self.most_common)
-
     def get_freq(self):
         return self.term_freq
 
@@ -44,7 +41,7 @@ class BIR:
         most_freq = c.most_common(1)[0][1]
 
         for term, freq in c.items():
-            document = Doc(idx, freq, most_freq, normalization_factor=0.5)
+            document = Doc(idx, freq, most_freq)
             if self.dictionary.get(term):
                 f, postings = self.dictionary[term]
 
