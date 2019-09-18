@@ -10,25 +10,20 @@ def normalize(v):
     return v / norm
 
 
-class ProcessText:
+def extract_keywords(query, stem=True, return_score=False):
+    r = Rake()
+    r.extract_keywords_from_text(query)
+    ls = r.get_ranked_phrases_with_scores()
 
-    def __init__(self, query):
-        self.query = query
+    scores, kw = zip(*ls)
 
-    def extract_keywords(self, stem=True, return_score=False):
-        r = Rake()
-        r.extract_keywords_from_text(self.query)
-        ls = r.get_ranked_phrases_with_scores()
+    scores = normalize(scores)
 
-        scores, kw = zip(*ls)
+    if stem:
+        ps = PorterStemmer()
+        kw = [ps.stem(word) for word in kw]
 
-        scores = normalize(scores)
-
-        if stem:
-            ps = PorterStemmer()
-            kw = [ps.stem(word) for word in kw]
-
-        if return_score:
-            return scores, kw
-        else:
-            return kw
+    if return_score:
+        return scores, kw
+    else:
+        return kw

@@ -1,7 +1,7 @@
 from Conversion import Conversion, is_operand, Et
 import numpy as np
 import pickle as p
-from ProcessText import ProcessText
+from text_processing_utils import extract_keywords
 
 
 class Session:
@@ -51,9 +51,8 @@ class Session:
 
     def search(self, query):
         # TODO: Implement ranking documents on importance of the terms it contains
-        pt = ProcessText(query)
 
-        scores, kw = pt.extract_keywords(stem=True, return_score=True)
+        scores, kw = extract_keywords(stem=True, return_score=True)
 
         return
 
