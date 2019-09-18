@@ -93,7 +93,7 @@ class PageRank:
         if not filename:
             filename = "PageRank_score"
 
-        filename += 'npy'
+        filename += '.npy'
 
         if not path:
             path = os.getcwd()
@@ -102,17 +102,10 @@ class PageRank:
 
         assert self.curr.shape == (self.N,)
 
-        with open(path, 'w') as f:
+        with open(path, 'wb') as f:
             np.save(f, self.curr, allow_pickle=False)
 
         return
 
-g = Graph()
-g.insert_edge(0, 1)
-g.insert_edge(0, 4)
-g.insert_edge(1, 2)
-g.insert_edge(1, 3)
-g.insert_edge(2, 0)
-g.insert_edge(3, 2)
-p = PageRank(g)
-p.iterate(max_iter=None)
+
+

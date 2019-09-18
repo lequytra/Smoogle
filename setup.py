@@ -10,17 +10,17 @@ def main(content_path='Contents', graph_path='Data/graph.p'):
     bir = BIR(normalization_factor=2)
     for filename in os.listdir(content_path):
         idx = filename[:-4]  # Content file must be stored as doc_id.txt
-        # Create
-        with open("{}/{}".format(content_path, filename)) as f:
-            kw = extract_keywords(f.read())
-            bir.insert_document(doc=kw, idx=idx)
+        if not filename.startswith('.'):
+            with open("{}/{}".format(content_path, filename), 'r') as f:
+                kw = extract_keywords(f.read())
+                bir.insert_document(doc=kw, idx=idx)
     # Calculate and save tf-idf table
-    bir.create_and_save_tf_idf(filename='tf_idx', path=os.getcwd())
+    bir.create_and_save_tf_idf(filename='tf_idx.npy', path=os.getcwd())
     # Save the BIR to a pickle file
     p.dumps(bir)
 
     # Upload the web graph
-    with open(graph_path) as f:
+    with open(graph_path, 'rb') as f:
         graph = p.load(f)
 
     # Build PageRank using the web graph

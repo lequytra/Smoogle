@@ -176,11 +176,11 @@ class BIR:
                 freq = np.array([doc.get_freq() for doc in postings])
                 most_common = np.array([doc.get_most_common() for doc in postings])
                 tf = np.add(1 / self.alpha, np.multiply((1 - 1 / self.alpha), np.divide(freq, most_common)))
-                idf = np.log(self.N, num_doc)
+                idf = np.log2(np.array([self.N/ num_doc]))
 
                 scores = np.multiply(tf, idf)
 
-            all_doc[[doc.doc_id for doc in postings]] = scores
+            all_doc[np.array([doc.doc_id for doc in postings], dtype=np.intp)] = scores
             tf_table = np.append(tf_table, all_doc)
 
         return tf_table
@@ -197,8 +197,8 @@ class BIR:
             path = os.path.join(path, 'Data', filename)
 
         try:
-            with open(path, 'w') as f:
-                np.save(f, tf_table)
+            with open(path, 'wb') as f:
+                np.save(f, tf_table, allow_pickle=False)
             return True
 
         except FileNotFoundError:

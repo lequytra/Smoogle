@@ -95,7 +95,7 @@ class Graph:
 
         path = os.path.join(path, 'Data', 'graph.p')
 
-        with open(path, 'w') as f:
-            p.dump(self)
+        with open(path, "wb") as f:
+            p.dump(self, f)
 
         return True
