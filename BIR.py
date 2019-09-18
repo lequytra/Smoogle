@@ -1,7 +1,7 @@
 from collections import defaultdict, Counter
 import numpy as np
 from functools import reduce
-
+import os
 
 class Doc:
 
@@ -48,9 +48,12 @@ class BIR:
                 postings.append(document)
                 f += 1
 
+
             else:
                 f = 1
                 postings = [document]
+
+            self.N += 1
 
             self.dictionary[term] = (f, postings)
 
@@ -139,7 +142,7 @@ class BIR:
                 return np.multiply(tf, idf)
 
             else:
-                print("Term contains no documents")
+                print("Term is contained in no documents")
                 return 0
         else:
             print("Term is not in dictionary!")
@@ -153,3 +156,46 @@ class BIR:
         except KeyError:
             print("The term {} is not currently available in the dictionary.".format(term))
             return []
+
+    def create_tf_idf(self):
+        """
+            A method to create a 2D array containing the tf-idx scores for all
+            (term, document) pair.
+        :return: a 2D numpy array
+        """
+        tf_table = np.empty((0, self.N))
+
+        for term in self.dictionary.keys():
+            num_doc, postings = self.dictionary[term]
+            all_doc = np.zeros((self.N,))
+            if num_doc != 0:
+                freq = np.array([doc.get_freq() for doc in postings])
+                most_common = np.array([doc.get_most_common() for doc in postings])
+                tf = np.add(1 / self.alpha, np.multiply((1 - 1 / self.alpha), np.divide(freq, most_common)))
+                idf = np.log(self.N, num_doc)
+
+                scores = np.multiply(tf, idf)
+
+            all_doc[[doc.doc_id for doc in postings]] = scores
+            tf_table = np.append(tf_table, all_doc)
+
+        return tf_table
+
+    def create_and_save_tf_idf(self, filename=None, path=None):
+        tf_table = self.create_tf_idf()
+
+        if not filename:
+            filename = 'tf_idf.npy'
+
+        if not path:
+            path = os.path.join(os.getcwd(), filename)
+        try:
+            with open(path, 'w') as f:
+                np.save(f, tf_table)
+            return True
+        
+        except FileNotFoundError:
+            print("Cannot save file")
+            return False
+
+
