@@ -5,11 +5,17 @@ import os
 
 class PageRank:
 
-    def __init__(self, graph, prev_path=None, damping_factor=0.32, epsilon=0.00001, default_weight=0.2):
+    def __init__(self, graph, prev_path=None, damping_factor=0.32, epsilon=0.00001, default_weight=None):
         self.N = graph.size()
+        if prev_path and default_weight:
+            print("A previous weight path is provided, previous weights will be used instead of default weights.")
 
-        if not prev_path:
+        elif not prev_path:
+            if not default_weight:
+                default_weight = 1/self.N
+
             self.prev = np.full(shape=(self.N,), fill_value=default_weight)
+
         else:
             self.prev = np.load(file=prev_path)
 
@@ -91,7 +97,7 @@ class PageRank:
 
         if not path:
             path = os.getcwd()
-        path = os.path.join(path, filename)
+        path = os.path.join(path, 'Data', filename)
         self.curr = np.squeeze(self.curr)
 
         assert self.curr.shape == (self.N,)

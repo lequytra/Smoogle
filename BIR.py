@@ -3,6 +3,7 @@ import numpy as np
 from functools import reduce
 import os
 
+
 class Doc:
 
     def __init__(self, id, term_freq, most_common):
@@ -15,6 +16,10 @@ class Doc:
 
     def get_most_common(self):
         return self.most_common
+
+
+def intersect(p1, p2):
+    return np.intersect1d(p1, p2, assume_unique=True)
 
 
 class BIR:
@@ -38,29 +43,28 @@ class BIR:
                 - idx: The unique index assigned to the document.
         """
         c = Counter(doc)
+        # Get the highest frequency
         most_freq = c.most_common(1)[0][1]
 
         for term, freq in c.items():
+            # Create a document object
             document = Doc(idx, freq, most_freq)
+            # If the term already exists in the dictionary
             if self.dictionary.get(term):
                 f, postings = self.dictionary[term]
 
                 postings.append(document)
                 f += 1
 
-
             else:
                 f = 1
                 postings = [document]
+                # Add the term and its information to the dictionary
+                self.dictionary[term] = (f, postings)
 
             self.N += 1
 
-            self.dictionary[term] = (f, postings)
-
         return
-
-    def intersect(self, p1, p2):
-        return np.intersect1d(p1, p2, assume_unique=True)
 
     def intersect(self, terms):
         """
@@ -79,7 +83,7 @@ class BIR:
 
         while len(terms) != 0 and len(result) != 0:
             first_term = terms[0]
-            result = self.intersect(result, self.dictionary[first_term])
+            result = intersect(result, self.dictionary[first_term])
             terms = terms[1:]
 
         return result
@@ -188,14 +192,15 @@ class BIR:
             filename = 'tf_idf.npy'
 
         if not path:
-            path = os.path.join(os.getcwd(), filename)
+            path = os.path.join(os.getcwd(), 'Data', filename)
+        else:
+            path = os.path.join(path, 'Data', filename)
+
         try:
             with open(path, 'w') as f:
                 np.save(f, tf_table)
             return True
-        
+
         except FileNotFoundError:
             print("Cannot save file")
             return False
-
-
