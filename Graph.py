@@ -25,7 +25,7 @@ class Graph:
 			self.graph[parent] = (self.default_weight, 1, set([]))
 			self.N += 1 # Increase the total number of nodes
 
-		print(self.get())
+		#print(self.get())
 
 	def insert_node(self, node):
 		"""
@@ -92,4 +92,3 @@ class Graph:
 
 		else:
 			return None
-

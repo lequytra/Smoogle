@@ -5,11 +5,10 @@ import scrapy
 
 class CrawlwebSpidersSpider(scrapy.Spider):
     name = 'crawlWeb.spiders'
-    allowed_domains = ['http://www.grinnell.edu']
-    start_urls = ['http://http://www.grinnell.edu/']
+    allowed_domains = ['http://www.grinnell.edu', 'https://en.wikipedia.org/']
+    start_urls = ['http://www.grinnell.edu/', 'https://en.wikipedia.org/wiki/Grinnell_College']
     id = 0
-
-     def parse(self, response):
+    def parse(self, response):
         """
 			A method to crawl a URL
 		"""
@@ -23,12 +22,16 @@ class CrawlwebSpidersSpider(scrapy.Spider):
         id += 1
 
         # Build Web Graph
-        next_page_url = response.css("li.next > a::attr(href)").extract_first()
+        next_page_url = response.css("li.next > a::attr(href)").extract()
         if next_page_url is not None:
             yield scrapy.Request(response.urljoin(next_page_url))
         
         for next_page in response.css('a.next-posts-link'):
             ## Add to graph insert_edge
             yield response.follow(next_page, self.parse)
+        
+        def scrape(self, response):
+            for 
+
         
         
