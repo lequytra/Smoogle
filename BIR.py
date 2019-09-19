@@ -1,7 +1,9 @@
 from collections import defaultdict, Counter
 import numpy as np
 from functools import reduce
-
+import os
+import pickle as p
+from functools import reduce
 
 class Doc:
 
@@ -15,6 +17,9 @@ class Doc:
 
     def get_most_common(self):
         return self.most_common
+
+    def get_id(self):
+        return self.doc_id
 
 
 class BIR:
@@ -38,10 +43,13 @@ class BIR:
                 - idx: The unique index assigned to the document.
         """
         c = Counter(doc)
+        # Get the highest frequency
         most_freq = c.most_common(1)[0][1]
 
         for term, freq in c.items():
+            # Create a document object
             document = Doc(idx, freq, most_freq)
+            # If the term already exists in the dictionary
             if self.dictionary.get(term):
                 f, postings = self.dictionary[term]
 
@@ -51,15 +59,17 @@ class BIR:
             else:
                 f = 1
                 postings = [document]
+                # Add the term and its information to the dictionary
+                self.dictionary[term] = (f, postings)
 
-            self.dictionary[term] = (f, postings)
+                self.N += 1
 
         return
 
     def intersect(self, p1, p2):
         return np.intersect1d(p1, p2, assume_unique=True)
 
-    def intersect(self, terms):
+    def reduce_intersect(self, terms):
         """
             Return the document intersections of
             a list of terms
@@ -69,17 +79,12 @@ class BIR:
         """
 
         # Find the frequency for all terms, in ascending order
-        terms = self._get_freq(terms)
+        terms, _ = self._get_freq(terms)
+        del _
         # Get the postings of the term with the shortest frequency
-        _, result = self.dictionary[terms[0]]
-        terms = terms[1:]
+        postings = [[doc.get_id() for doc in self.dictionary[t][1]] for t in terms]
 
-        while len(terms) != 0 and len(result) != 0:
-            first_term = terms[0]
-            result = self.intersect(result, self.dictionary[first_term])
-            terms = terms[1:]
-
-        return result
+        return reduce(np.intersect1d, postings)
 
     def union(self, terms):
         """
@@ -89,10 +94,11 @@ class BIR:
             Param:
                 - Terms: Array of terms/words
         """
+        postings = [[doc.get_id() for doc in self.dictionary[t][1]] for t in terms]
 
-        return reduce(np.union1d, [self.dictionary[t][1] for t in terms])
+        return reduce(np.union1d, postings)
 
-    def diff(p1, p2):
+    def diff(self, p1, p2):
         return np.setdiff1d(p1, p2, assume_unique=True)
 
     def _get_freq(self, terms):
@@ -139,7 +145,7 @@ class BIR:
                 return np.multiply(tf, idf)
 
             else:
-                print("Term contains no documents")
+                print("Term is contained in no documents")
                 return 0
         else:
             print("Term is not in dictionary!")
@@ -153,3 +159,67 @@ class BIR:
         except KeyError:
             print("The term {} is not currently available in the dictionary.".format(term))
             return []
+
+    def create_tf_idf(self):
+        """
+            A method to create a 2D array containing the tf-idx scores for all
+            (term, document) pair.
+        :return: a 2D numpy array
+        """
+        tf_table = {}
+
+        for term in self.dictionary.keys():
+            num_doc, postings = self.dictionary[term]
+            all_doc = np.zeros((self.N,))
+            if num_doc != 0:
+                freq = np.array([doc.get_freq() for doc in postings])
+                most_common = np.array([doc.get_most_common() for doc in postings])
+                tf = np.add(1 / self.alpha, np.multiply((1 - 1 / self.alpha), np.divide(freq, most_common)))
+                idf = np.log2(np.array([self.N / num_doc]))
+
+                scores = np.multiply(tf, idf)
+            else:
+                scores = np.zeros((self.N,))
+
+            all_doc[np.array([doc.doc_id for doc in postings], dtype=np.intp)] = scores
+
+            tf_table[term] = all_doc
+
+        return tf_table
+
+    def create_and_save_tf_idf(self, filename=None, path=None):
+        tf_table = self.create_tf_idf()
+
+        if not filename:
+            filename = 'tf_idf.p'
+
+        if not path:
+            path = os.path.join(os.getcwd(), 'Data', filename)
+        else:
+            path = os.path.join(path, 'Data', filename)
+
+        try:
+            with open(path, 'wb') as f:
+                p.dump(tf_table, f)
+            return True
+
+        except FileNotFoundError:
+            print("Cannot save file")
+            return False
+
+    def save(self, filename=None, path=None):
+        if not filename:
+            filename = 'bir.p'
+
+        if not path:
+            path = os.path.join(os.getcwd(), 'Data')
+        else:
+            path = os.path.join(path, 'Data')
+
+        if not os.path.exists(path):
+            os.makedirs(path)
+
+        path = os.path.join(path, filename)
+
+        with open(path, "wb") as f:
+            p.dump(self, f)

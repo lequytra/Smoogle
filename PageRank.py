@@ -5,11 +5,17 @@ import os
 
 class PageRank:
 
-    def __init__(self, graph, prev_path=None, damping_factor=0.32, epsilon=0.00001, default_weight=0.2):
+    def __init__(self, graph, prev_path=None, damping_factor=0.32, epsilon=0.00001, default_weight=None):
         self.N = graph.size()
+        if prev_path and default_weight:
+            print("A previous weight path is provided, previous weights will be used instead of default weights.")
 
-        if not prev_path:
+        elif not prev_path:
+            if not default_weight:
+                default_weight = 1 / self.N
+
             self.prev = np.full(shape=(self.N,), fill_value=default_weight)
+
         else:
             self.prev = np.load(file=prev_path)
 
@@ -56,7 +62,8 @@ class PageRank:
         while diff >= self.epsilon and i < max_iter:
             diff = self.calculate_score(A=A)
             i += 1
-            print(self.curr)
+            if i % 20 == 0:
+                print(self.curr)
         return self.curr
 
     def build_A(self):
@@ -87,26 +94,23 @@ class PageRank:
         if not filename:
             filename = "PageRank_score"
 
-        filename += 'npy'
+        filename += '.npy'
 
         if not path:
             path = os.getcwd()
+        path = os.path.join(path, 'Data')
+
+        path = os.path.join(path, 'Data')
+        if not os.path.exists(path):
+            os.makedirs(path)
+
         path = os.path.join(path, filename)
+
         self.curr = np.squeeze(self.curr)
 
         assert self.curr.shape == (self.N,)
 
-        with open(path, 'w') as f:
+        with open(path, 'wb') as f:
             np.save(f, self.curr, allow_pickle=False)
 
         return
-
-g = Graph()
-g.insert_edge(0, 1)
-g.insert_edge(0, 4)
-g.insert_edge(1, 2)
-g.insert_edge(1, 3)
-g.insert_edge(2, 0)
-g.insert_edge(3, 2)
-p = PageRank(g)
-p.iterate(max_iter=None)
