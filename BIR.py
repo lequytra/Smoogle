@@ -2,6 +2,7 @@ from collections import defaultdict, Counter
 import numpy as np
 from functools import reduce
 import os
+import pickle as p
 
 
 class Doc:
@@ -204,3 +205,15 @@ class BIR:
         except FileNotFoundError:
             print("Cannot save file")
             return False
+
+    def save(self, filename=None, path=None):
+        if not filename:
+            filename = 'bir.p'
+
+        if not path:
+            path = os.path.join(os.getcwd(), 'Data', filename)
+        else:
+            path = os.path.join(path, 'Data', filename)
+
+        with open(path, "wb") as f:
+            p.dump(self, f)

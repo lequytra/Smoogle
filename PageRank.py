@@ -12,7 +12,7 @@ class PageRank:
 
         elif not prev_path:
             if not default_weight:
-                default_weight = 1/self.N
+                default_weight = 1 / self.N
 
             self.prev = np.full(shape=(self.N,), fill_value=default_weight)
 
@@ -62,7 +62,8 @@ class PageRank:
         while diff >= self.epsilon and i < max_iter:
             diff = self.calculate_score(A=A)
             i += 1
-            print(self.curr)
+            if i % 20 == 0:
+                print(self.curr)
         return self.curr
 
     def build_A(self):
@@ -106,6 +107,3 @@ class PageRank:
             np.save(f, self.curr, allow_pickle=False)
 
         return
-
-
-
