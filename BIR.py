@@ -3,7 +3,7 @@ import numpy as np
 from functools import reduce
 import os
 import pickle as p
-
+from functools import reduce
 
 class Doc:
 
@@ -18,9 +18,8 @@ class Doc:
     def get_most_common(self):
         return self.most_common
 
-
-def intersect(p1, p2):
-    return np.intersect1d(p1, p2, assume_unique=True)
+    def get_id(self):
+        return self.doc_id
 
 
 class BIR:
@@ -63,11 +62,14 @@ class BIR:
                 # Add the term and its information to the dictionary
                 self.dictionary[term] = (f, postings)
 
-            self.N += 1
+                self.N += 1
 
         return
 
-    def intersect(self, terms):
+    def intersect(self, p1, p2):
+        return np.intersect1d(p1, p2, assume_unique=True)
+
+    def reduce_intersect(self, terms):
         """
             Return the document intersections of
             a list of terms
@@ -77,17 +79,12 @@ class BIR:
         """
 
         # Find the frequency for all terms, in ascending order
-        terms = self._get_freq(terms)
+        terms, _ = self._get_freq(terms)
+        del _
         # Get the postings of the term with the shortest frequency
-        _, result = self.dictionary[terms[0]]
-        terms = terms[1:]
+        postings = [[doc.get_id() for doc in self.dictionary[t][1]] for t in terms]
 
-        while len(terms) != 0 and len(result) != 0:
-            first_term = terms[0]
-            result = intersect(result, self.dictionary[first_term])
-            terms = terms[1:]
-
-        return result
+        return reduce(np.intersect1d, postings)
 
     def union(self, terms):
         """
@@ -97,10 +94,11 @@ class BIR:
             Param:
                 - Terms: Array of terms/words
         """
+        postings = [[doc.get_id() for doc in self.dictionary[t][1]] for t in terms]
 
-        return reduce(np.union1d, [self.dictionary[t][1] for t in terms])
+        return reduce(np.union1d, postings)
 
-    def diff(p1, p2):
+    def diff(self, p1, p2):
         return np.setdiff1d(p1, p2, assume_unique=True)
 
     def _get_freq(self, terms):
@@ -168,7 +166,7 @@ class BIR:
             (term, document) pair.
         :return: a 2D numpy array
         """
-        tf_table = np.empty((0, self.N))
+        tf_table = {}
 
         for term in self.dictionary.keys():
             num_doc, postings = self.dictionary[term]
@@ -177,12 +175,15 @@ class BIR:
                 freq = np.array([doc.get_freq() for doc in postings])
                 most_common = np.array([doc.get_most_common() for doc in postings])
                 tf = np.add(1 / self.alpha, np.multiply((1 - 1 / self.alpha), np.divide(freq, most_common)))
-                idf = np.log2(np.array([self.N/ num_doc]))
+                idf = np.log2(np.array([self.N / num_doc]))
 
                 scores = np.multiply(tf, idf)
+            else:
+                scores = np.zeros((self.N,))
 
             all_doc[np.array([doc.doc_id for doc in postings], dtype=np.intp)] = scores
-            tf_table = np.append(tf_table, all_doc)
+
+            tf_table[term] = all_doc
 
         return tf_table
 
@@ -190,7 +191,7 @@ class BIR:
         tf_table = self.create_tf_idf()
 
         if not filename:
-            filename = 'tf_idf.npy'
+            filename = 'tf_idf.p'
 
         if not path:
             path = os.path.join(os.getcwd(), 'Data', filename)
@@ -199,7 +200,7 @@ class BIR:
 
         try:
             with open(path, 'wb') as f:
-                np.save(f, tf_table, allow_pickle=False)
+                p.dump(tf_table, f)
             return True
 
         except FileNotFoundError:
@@ -211,9 +212,14 @@ class BIR:
             filename = 'bir.p'
 
         if not path:
-            path = os.path.join(os.getcwd(), 'Data', filename)
+            path = os.path.join(os.getcwd(), 'Data')
         else:
-            path = os.path.join(path, 'Data', filename)
+            path = os.path.join(path, 'Data')
+
+        if not os.path.exists(path):
+            os.makedirs(path)
+
+        path = os.path.join(path, filename)
 
         with open(path, "wb") as f:
             p.dump(self, f)
