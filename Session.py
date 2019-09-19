@@ -2,7 +2,7 @@ from Conversion import Conversion, is_operand, Et
 import numpy as np
 import pickle as p
 from text_processing_utils import extract_keywords
-
+from nltk.stem import PorterStemmer
 
 class Session:
     def __init__(self):
@@ -12,13 +12,13 @@ class Session:
 
     def load(self, path_bir, pscore_path, tf_idf):
         try:
-            with open(path_bir) as f:
-                self.BIR = p.loads(f)
+            with open(path_bir, "rb") as f:
+                self.BIR = p.load(f)
 
-            with open(pscore_path) as f:
+            with open(pscore_path, "rb") as f:
                 self.scores = np.load(f)
 
-            with open(tf_idf) as f:
+            with open(tf_idf, "rb") as f:
                 self.tf_idf = p.load(f)
             return True
 
@@ -40,39 +40,46 @@ class Session:
             self.search(query)
             return self.BIR.reduce_intersect()
 
+        ps = PorterStemmer()
+        kw = [ps.stem(word) if is_operand(word) else word for word in query.split()]
+        query = " ".join(kw)
+        del kw
+
         postfix = c.infix_to_postfix(query)
         root = c.constructTree(postfix)
-
-        del c
-        del postfix
+        del c, postfix
 
         found = self._solve(root)
 
         found_scores = self.scores[found]
 
         pairs = [(f, s) for f, s in zip(found, found_scores)]
+        pairs = set(pairs)
 
-        pairs.sort(key=lambda x: x[1])
+        pairs = [i for i in pairs]
 
-        return pairs
+        pairs.sort(key=lambda x: x[1], reverse=True)
+
+        docs, scores = zip(*pairs)
+
+        return docs, scores
 
     def search(self, query):
-        # TODO: Implement ranking documents on importance of the terms it contains
 
-        scores, kw = extract_keywords(stem=True, return_score=True)
-        tf_idf = np.empty((0, self.bir.N))
+        scores, kw = extract_keywords(query, stem=True, return_score=True)
+        tf_idf = np.empty((0, self.BIR.N))
         tf_idf = np.array([np.append(tf_idf, self.tf_idf[word]) for word in kw])
         tf_idf = np.sum(tf_idf, axis=0)
 
-        retrieved_doc = self.bir.reduce_intersect(kw)
+        retrieved_doc = self.BIR.reduce_union(kw)
 
         pagerank_score = self.scores[retrieved_doc]
         retrieved_tf = tf_idf[retrieved_doc]
 
         final = np.multiply(pagerank_score, retrieved_tf)
 
-        res = zip(retrieved_doc, final)
-        res.sort(key=lambda x: x[0])
+        res = [i for i in zip(retrieved_doc, final)]
+        res.sort(key=lambda x: x[1], reverse=True)
         doc, scores = zip(*res)
 
         return doc, scores
@@ -88,7 +95,7 @@ class Session:
                 right = self._solve(root.right)
 
                 if val == "AND":
-                    return self.BIR.reduce_intersect(left, right)
+                    return self.BIR.intersect(left, right)
                 elif val == "OR":
                     return self.BIR.union(left, right)
                 else:

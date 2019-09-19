@@ -5,6 +5,7 @@ import os
 import pickle as p
 from functools import reduce
 
+
 class Doc:
 
     def __init__(self, id, term_freq, most_common):
@@ -66,8 +67,14 @@ class BIR:
 
         return
 
+    def intersect_by_terms(self, term1, term2):
+
+        p1, p2 = self.get_ids_by_term(term1), self.get_ids_by_term(term2)
+
+        return np.intersect1d(p1, p2, assume_unique=True).astype(int)
+
     def intersect(self, p1, p2):
-        return np.intersect1d(p1, p2, assume_unique=True)
+        return np.intersect1d(p1, p2, assume_unique=True).astype(int)
 
     def reduce_intersect(self, terms):
         """
@@ -82,11 +89,20 @@ class BIR:
         terms, _ = self._get_freq(terms)
         del _
         # Get the postings of the term with the shortest frequency
-        postings = [[doc.get_id() for doc in self.dictionary[t][1]] for t in terms]
+        postings = [self.get_ids_by_term(t) for t in terms]
 
-        return reduce(np.intersect1d, postings)
+        return reduce(np.intersect1d, postings).astype(int)
 
-    def union(self, terms):
+    def union_by_terms(self, term1, term2):
+
+        p1, p2 = self.get_ids_by_term(term1), self.get_ids_by_term(term2)
+
+        return np.union1d(p1, p2).astype(int)
+
+    def union(self, p1, p2):
+        return np.union1d(p1, p2).astype(int)
+
+    def reduce_union(self, terms):
         """
             Return the document intersections of
             a list of terms
@@ -94,12 +110,18 @@ class BIR:
             Param:
                 - Terms: Array of terms/words
         """
-        postings = [[doc.get_id() for doc in self.dictionary[t][1]] for t in terms]
+        postings = [self.get_ids_by_term(t) for t in terms]
 
-        return reduce(np.union1d, postings)
+        return reduce(np.union1d, postings).astype(int)
+
+    def diff_by_terms(self, term1, term2):
+
+        p1, p2 = self.get_ids_by_term(term1), self.get_ids_by_term(term2)
+
+        return np.setdiff1d(p1, p2, assume_unique=True).astype(int)
 
     def diff(self, p1, p2):
-        return np.setdiff1d(p1, p2, assume_unique=True)
+        return np.setdiff1d(p1, p2, assume_unique=True).astype(int)
 
     def _get_freq(self, terms):
         """
@@ -150,6 +172,10 @@ class BIR:
         else:
             print("Term is not in dictionary!")
             return -1
+
+    def get_ids_by_term(self, term):
+
+        return [doc.get_id() for doc in self.dictionary[term][1]]
 
     def get_term(self, term):
 
