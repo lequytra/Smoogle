@@ -98,7 +98,14 @@ class PageRank:
 
         if not path:
             path = os.getcwd()
-        path = os.path.join(path, 'Data', filename)
+        path = os.path.join(path, 'Data')
+
+        path = os.path.join(path, 'Data')
+        if not os.path.exists(path):
+            os.makedirs(path)
+
+        path = os.path.join(path, filename)
+
         self.curr = np.squeeze(self.curr)
 
         assert self.curr.shape == (self.N,)

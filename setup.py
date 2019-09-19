@@ -20,7 +20,7 @@ def main(content_path='Contents', graph_path='Data/graph.p', bir_name=None):
                 kw = extract_keywords(f.read())
                 bir.insert_document(doc=kw, idx=idx)
     # Calculate and save tf-idf table
-    bir.create_and_save_tf_idf(filename='tf_idx.npy', path=os.getcwd())
+    bir.create_and_save_tf_idf(filename='tf_idx.p', path=os.getcwd())
     # Save the BIR to a pickle file
     bir.save(filename=bir_name, path=None)
 

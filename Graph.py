@@ -93,7 +93,11 @@ class Graph:
         if not path:
             path = os.getcwd()
 
-        path = os.path.join(path, 'Data', 'graph.p')
+        path = os.path.join(path, 'Data')
+        if not os.path.exists(path):
+            os.makedirs(path)
+
+        path = os.path.join(path, 'graph.p')
 
         with open(path, "wb") as f:
             p.dump(self, f)
