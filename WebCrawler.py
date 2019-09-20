@@ -59,17 +59,20 @@ def addLinks (source, dic_id):
     links = source.findAll('a', attrs={'href' : re.compile('.*')})
     newID = get_last_id () + 1
     print("Updated current last id: "+ str(get_last_id ()))
+    if len(links) > 100:
+        links = links[0:100]
     for i in links:
         link = i['href']
-        if validators.url(link) and not str(link).endswith(".pdf"): # filtering the pdf for now
+        if validators.url(link) and not str(link).endswith(".pdf") and not str(link).endswith(".jpg") and not str(link).startswith("https://web.archive.org/"):
             try: 
                 if urllib.request.urlopen(link).getcode() == 200: # valid request
-                    if url_id.get(link):
+                    if url_id.get(link) and not url_id.get(link) == dic_id:
                         webGraph.insert_edge(dic_id, url_id.get(link))
                     else:
                         needToCrawl.update({link:newID})
                         url_id.update({link:newID})
                         id_url.update({newID:link})
+                        print(str(newID))
                         newID += 1
                         webGraph.insert_edge(dic_id, newID)
             except urllib.error.URLError as e:
@@ -79,6 +82,8 @@ def addLinks (source, dic_id):
             except http.client.RemoteDisconnected as e:
                 pass
             except Exception as e:
+                pass
+            except ValueError as e:
                 pass
     print("we finished adding edges for "+ str(dic_id))
     global last_id
@@ -102,12 +107,17 @@ crawl_url_id = {}
 crawl_id_url = {}
 webGraph = Graph ()
         
-for numCrawled in range(0, 200):
+for numCrawled in range(0, 130):
     if len(needToCrawl) >= 1:
-        tempurl = list(needToCrawl)[random.randrange(0, len(needToCrawl), 1)]
-        # Crawling random url from list of url so that web graph is not concentrated to seed url
-        print(tempurl + " " + str(url_id.get(tempurl)))
+        if (len(needToCrawl) > 20):
+            tempRange = (int) (len(needToCrawl)/5)
+        else:
+            tempRange = len(needToCrawl)
+        tempurl = list(needToCrawl)[random.randrange(0, tempRange, 1)]
+        # Crawling random url from list of url so that web graph is not too much concentrated to seed url
         crawl(tempurl, url_id.get(tempurl))
+    else:
+        break
 
 # Save url_to_id, id_to_url dictionary in the local directory
 with open(os.path.join(save_path, "url_id.csv"), "w+") as f:
