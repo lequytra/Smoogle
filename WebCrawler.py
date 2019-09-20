@@ -6,14 +6,15 @@ from Graph import Graph
 import re
 import validators
 import csv
-import pickle
+import http.client
+import random
 
 def crawl (url, dic_id):
     '''
     crawl webpage from given url and update list
     '''
     if (crawled.__contains__(url)):
-        needToCrawl.remove(url)
+        needToCrawl.pop(url, None) 
         return
 
     print("Start crawling: "+ url)
@@ -24,7 +25,7 @@ def crawl (url, dic_id):
 
     if body is None:
         print("error", url)
-        needToCrawl.remove(url)
+        needToCrawl.pop(url, None) 
         tempid = url_id.get(url)
         webGraph.remove_node(tempid)
     else:
@@ -34,52 +35,79 @@ def crawl (url, dic_id):
         with open(os.path.join(save_path, str(dic_id) +".txt"), "w+") as f:
             f.write(text)
         
-        url_id.update({url:dic_id})
-        id_url.update({dic_id:url})
+        crawl_url_id.update({url:dic_id})
+        crawl_id_url.update({dic_id:url})
         crawled.append(url)
-        needToCrawl.remove(url)
+        needToCrawl.pop(url, None) 
 
-        return addLinks(soup, dic_id)
+        addLinks(soup, dic_id)
+
+def get_last_id ():
+    '''
+    access global variable last_id
+    last_id is last id assigned for graph
+    '''
+    return last_id
 
 def addLinks (source, dic_id):
+    '''
+    Add every valid hyperlink from dic_id url to potential crawling list
+    Update global last_id after adding every hyperlink to url dictionaries
+    @param source BeautifulSoup object 
+    @param dic_id id of source url
+    '''
     links = source.findAll('a', attrs={'href' : re.compile('.*')})
-    newID = dic_id
+    newID = get_last_id () + 1
+    print("Updated current last id: "+ str(get_last_id ()))
     for i in links:
         link = i['href']
-        if validators.url(link) and not str(link).endswith(".pdf"): 
+        if validators.url(link) and not str(link).endswith(".pdf"): # filtering the pdf for now
             try: 
                 if urllib.request.urlopen(link).getcode() == 200: # valid request
                     if url_id.get(link):
                         webGraph.insert_edge(dic_id, url_id.get(link))
                     else:
-                        needToCrawl.append(link)
+                        needToCrawl.update({link:newID})
+                        url_id.update({link:newID})
+                        id_url.update({newID:link})
                         newID += 1
                         webGraph.insert_edge(dic_id, newID)
             except urllib.error.URLError as e:
-                print(e.reason, link)
-            except UnicodeEncodeError as e:
-                print(e.reason, link)
+                pass
+            except UnicodeError as e:
+                pass
             except http.client.RemoteDisconnected as e:
-                print(e.reason, link)
+                pass
             except Exception as e:
-                print("Exception: "+ str(link))
+                pass
     print("we finished adding edges for "+ str(dic_id))
-    return newID
+    global last_id
+    last_id = newID
 
 ## Set up os.path
 save_path = '/mnt/c/Users/stella/Documents/Github/Search-Engine/Contents'
 start_url = 'https://en.wikipedia.org/wiki/Grinnell_College'
 
-dic_id = 0
+global last_id
+last_id = 0
+
 crawled = []
-needToCrawl = [start_url]
+needToCrawl = {}
+needToCrawl.update({start_url:last_id})
 url_id = {}
+url_id.update({start_url:last_id})
 id_url = {}
+id_url.update({last_id:start_url})
+crawl_url_id = {}
+crawl_id_url = {}
 webGraph = Graph ()
         
-for counter in range(0, 100):
-    print (needToCrawl[0], dic_id)
-    dic_id = crawl(needToCrawl[0], dic_id)
+for numCrawled in range(0, 200):
+    if len(needToCrawl) >= 1:
+        tempurl = list(needToCrawl)[random.randrange(0, len(needToCrawl), 1)]
+        # Crawling random url from list of url so that web graph is not concentrated to seed url
+        print(tempurl + " " + str(url_id.get(tempurl)))
+        crawl(tempurl, url_id.get(tempurl))
 
 # Save url_to_id, id_to_url dictionary in the local directory
 with open(os.path.join(save_path, "url_id.csv"), "w+") as f:
@@ -92,6 +120,15 @@ with open(os.path.join(save_path, "id_url.csv"), "w+") as f:
     for key, val in id_url.items():
 	    w.writerow([key, val])
 
+with open(os.path.join(save_path, "c_url_id.csv"), "w+") as f:
+    w = csv.writer(f)
+    for key, val in crawl_url_id.items():
+	    w.writerow([key, val])
+
+with open(os.path.join(save_path, "c_id_url.csv"), "w+") as f:
+    w = csv.writer(f)
+    for key, val in crawl_id_url.items():
+	    w.writerow([key, val])
 # Save web graph
 webGraph.save_graph()
 
