@@ -32,11 +32,11 @@ def test_session():
         print("Cannot find necessary files!!! Try running setup file??!")
         return False
 
-    q1 = "Grinnell AND College"
-    q2 = "Grinnell College is a private liberal arts college in Grinnell"
+    q1 = "Biologists AND long OR Grinnell"
+    q2 = "biologists has long been Grinnell"
     res1 = s.advance_search(q1)
     res2 = s.search(q2)
-    print("Results for advance search: ")
+    print("Results for advanced search: ")
     print(res1)
     print("Results for intelligent search: ")
     print(res2)
