@@ -1,0 +1,186 @@
+
+
+
+
+
+
+
+
+Template:Colleges and universities in Iowa
+
+From Wikipedia, the free encyclopedia
+
+
+Jump to navigation
+Jump to search
+vteColleges and universities in IowaPublic institutions
+University of Iowa
+Iowa State University
+University of Northern Iowa
+
+
+Iowa portalPrivate institutions
+Briar Cliff
+Buena Vista
+Central
+Clarke
+Coe
+Cornell
+Des Moines
+Divine Word
+Dordt
+Drake
+Emmaus Bible
+Faith Baptist
+Graceland
+Grand View
+Grinnell
+Iowa Wesleyan
+Loras
+Luther
+Maharishi
+Morningside
+Mount Mercy
+Northwestern
+St. Ambrose
+Simpson
+University of Dubuque
+Upper Iowa
+Waldorf
+Wartburg
+William Penn
+
+Initial visibility: currently defaults to autocollapse
+To set this template's initial visibility, the |state= parameter may be used:
+
+
+|state=collapsed: {{Colleges and universities in Iowa|state=collapsed}} to show the template collapsed, i.e., hidden apart from its title bar
+|state=expanded: {{Colleges and universities in Iowa|state=expanded}} to show the template expanded, i.e., fully visible
+|state=autocollapse: {{Colleges and universities in Iowa|state=autocollapse}}
+
+shows the template collapsed to the title bar if there is a {{navbar}}, a {{sidebar}}, or some other table on the page with the collapsible attribute
+shows the template in its expanded state if there are no other collapsible items on the page
+
+If the |state= parameter in the template on this page is not set, the template's initial visibility is taken from the |default= parameter in the Collapsible option template. For the template on this page, that currently evaluates to autocollapse.
+
+
+
+
+
+Retrieved from "https://en.wikipedia.org/w/index.php?title=Template:Colleges_and_universities_in_Iowa&oldid=908704364"
+Categories: Iowa universities and colleges navigational boxes
+
+
+
+
+
+
+
+Navigation menu
+
+
+Personal tools
+
+Not logged inTalkContributionsCreate accountLog in 
+
+
+
+Namespaces
+
+TemplateTalk 
+
+
+
+
+Variants
+
+
+
+
+
+
+
+Views
+
+ReadEditView history 
+
+
+
+More
+
+
+
+
+
+Search
+
+
+
+ 
+
+
+
+
+
+
+
+Navigation
+
+
+Main pageContentsFeatured contentCurrent eventsRandom articleDonate to WikipediaWikipedia store 
+
+
+
+Interaction
+
+
+HelpAbout WikipediaCommunity portalRecent changesContact page 
+
+
+
+Tools
+
+
+What links hereRelated changesUpload fileSpecial pagesPermanent linkPage informationWikidata item 
+
+
+
+Print/export
+
+
+Download as PDF 
+
+
+
+Languages
+
+
+Ð ÑÑÑÐºÐ¸Ð¹ 
+Edit links 
+
+
+
+
+
+ This page was last edited on 31 July 2019, at 12:29 (UTC).
+Text is available under the Creative Commons Attribution-ShareAlike License;
+additional terms may apply.  By using this site, you agree to the Terms of Use and Privacy Policy. WikipediaÂ® is a registered trademark of the Wikimedia Foundation, Inc., a non-profit organization.
+
+
+Privacy policy
+About Wikipedia
+Disclaimers
+Contact Wikipedia
+Developers
+Cookie statement
+Mobile view
+
+
+
+ 
+
+ 
+
+
+
+

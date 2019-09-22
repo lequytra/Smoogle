@@ -15,7 +15,7 @@ def crawl (url, dic_id):
     '''
     crawl webpage from given url and update list
     '''
-    if (crawled.__contains__(url)):
+    if (crawled.__contains__(url)) and "alumni.grinnell.edu" in str(url):
         needToCrawl.pop(url, None) 
         return
 
@@ -142,7 +142,7 @@ else:
 global last_id
 last_id = int(current)
         
-for numCrawled in range(0, 30):
+for numCrawled in range(0, 50):
     if len(needToCrawl) >= 1:
         if (len(needToCrawl) > 1000):
             tempRange = (int) (len(needToCrawl)/250)

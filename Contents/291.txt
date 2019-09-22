@@ -1,0 +1,119 @@
+
+
+
+ 
+
+
+
+Du Cange et al., Glossarium mediÃ¦ et infimÃ¦ latinitatis. Niort : L. Favre, 1883-1887.
+
+
+
+Â«
+Â»
+
+Aide
+TÃ©lÃ©chargements
+Documentation
+Publications
+PrÃ©sentation
+
+
+ 
+                  
+
+
+
+
+ consulter un article
+	
+
+ recherche plein texte
+	
+
+ formes exactes
+    
+
+
+
+
+
+
+        citations latines 
+
+
+        citations franÃ§aises 
+
+
+        citations grecques 
+
+
+
+Du Cange, et al., Glossarium mediÃ¦ et infimÃ¦ latinitatis. Niort : L. Favre, 1883-1887.
+    
+
+
+  Le Glossarium mediae et infimae latinitatis, initialement publiÃ© par Charles du Fresne,
+  sieur du Cange (1610-1688), est un glossaire du latin mÃ©diÃ©val, en latin moderne.
+    
+Quoi ?  â Un glossaire n'est pas un dictionnaire.
+
+un glossaire nâest pas un dictionnaire monolingue, par exemple, il ne comporte pas dâinformation grammaticaleÂ ;
+un glossaire nâest pas un dictionnaire bilingue, les mots nâont pas de traductions, les explications sont en latinÂ ;
+une glose nâest pas une dÃ©finition, mais une explication courte, ou un commentaire, et parfois toute une dissertationÂ ;
+le latin mÃ©diÃ©val nâest pas du latin classique (ni moderne), mais la langue Ã©crite dâun continent pendant un millÃ©naireÂ ;
+la graphie du latin mÃ©diÃ©val a beaucoup variÃ© selon les lieux et les siÃ¨cles, un mÃªme mot peut se trouver Ã  plusieurs endroits de lâalphabetÂ ;
+le Glossarium est pour moitiÃ© composÃ© de citations, dont beaucoup sont en ancien franÃ§ais.
+
+
+Averti de ce que le Glossarium nâest pas, le lecteur y vient gÃ©nÃ©ralement aprÃ¨s avoir consultÃ©  des lexiques plus rÃ©cents, notamment le Mediae latinitatis lexicon minus  de Niermeyer (LeidenÂ : Brill, 1976-â¦). Dans un texte mÃ©diÃ©val, en latin (mais aussi en vernaculaire europÃ©en), beaucoup de notions rÃ©sistent Ã  la traduction, et mÃªme Ã  la comprÃ©hension. Le du Cange peut apporter des Ã©clairages utiles.
+
+Qui ?  â Auteurs et histoire Ã©ditoriale.
+
+Le texte informatisÃ© rÃ©sulte dâune histoire Ã©ditoriale de deux siÃ¨cles, voir par exemple
+Hercule GÃ©raud, Â«Â Historique du Glossaire de la basse latinitÃ© de Du CangeÂ Â»
+ (BibliothÃ¨que de l'Ã©cole des chartes,  1840).
+
+
+(1678), le sieur du Cange publie son Glossarium en 3 tomes.
+(1733-1736), les BÃ©nÃ©dictins de la congrÃ©gation de Saint-Maur augmentent le contenu, en sâinsÃ©rant dans le plan initial.
+(1766), Pierre Carpentier ajoute un supplÃ©ment de 4 volumes d'articles.
+(1840-1850), Louis Henschel fond la nomenclature de Carpentier et des BÃ©nÃ©dictins pour les Ã©ditions Didot, ajoute des articles, et rÃ©unit deux tomes dâannexes.
+(1883-1887), LÃ©opold Favre compose la derniÃ¨re Ã©dition, rÃ©imprimÃ©e jusquâau XXe siÃ¨cle, 10 tomes.
+
+Chaque Ã©diteur a conservÃ© la mÃ©moire des ajouts par diffÃ©rents signes et puces.
+La lÃ©gende en est donnÃ©e au dÃ©but de chaque volume papier. Des traitements informatiques
+ont pu conserver cette information dans le texte numÃ©risÃ©, et l'afficher de maniÃ¨re plus lisible pour le public.
+
+
+Lâensemble consultable rÃ©sulte de lâÃ©dition Favre, qui sâÃ©tend sur 10 tomes, 6000 pages,
+dont 5000 de dictionnaire latin, 90 000 articles, 6 millions de mots.
+Les ajouts ont Ã  peu prÃ¨s doublÃ© la taille du texte de du Cange,
+gÃ©nÃ©ralement par de courts articles, des sous-vedettes, de nouvelles citations, et des prÃ©cisions dans les rÃ©fÃ©rences.
+Lâhistoire Ã©ditoriale a peu modifiÃ© les intentions de du Cange, si bien que lâouvrage reste
+largement influencÃ© par son auteur initial, et la lexicographie du XVIIe siÃ¨cle.
+Ce glossaire n'est pas un dictionnaire trÃ¨s systÃ©matique, tant dans l'inventaire des emplois, que l'Ã©conomie de la nomenclature.
+
+Comment ?  â Informatisation XML/TEI.
+Cette Ã©dition Ã©lectronique a Ã©tÃ© encodÃ©e en XML, selon un schÃ©ma documentÃ©, conforme au modÃ¨le TEI P5. Une Ã©quipe pluridisciplinaire de latinistes, de lexicographes, d'historiens et d'informaticiens, garantit le soin portÃ© au texte. L'application continuera de s'amÃ©liorer selon vos rÃ©actions et suggestions.
+ 
+ 
+
+Conception et rÃ©alisation : Ãcole nationale des chartes, ANR Omnia.
+
+
+
+
+Â© Ãcole nationale des chartes
+Licence
+CrÃ©dits
+
+
+
+ 
+ 
+
+
+
+
+ 

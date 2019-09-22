@@ -1,0 +1,72 @@
+
+
+
+
+Markup Validation Service
+
+Check the markup (HTML, XHTML, â¦) of Web documents
+
+
+
+Jump To:
+Error(s) blocking validation
+
+Sorry! This document cannot be checked.
+
+
+
+    I got the following unexpected response when trying to
+    retrieve <http:///~rebelsky/about-eoc.html>:
+  
+
+500 No Host option provided
+
+
+    If you made recent changes to your domain name (DNS) configuration, you may
+    also want to check that your
+    domain records are correct, or ask your hosting company to do so.
+  
+
+
+
+
+Home | 
+About... | 
+News | 
+Docs | 
+Help & FAQ | 
+Feedback | 
+Contribute | 
+
+
+
+
+
+
+
+
+
+
+
+      This service runs the W3C Markup Validator, v1.3+hg.
+    
+
+Copyright © 1994-2013
+			W3C®
+
+			(MIT,
+			ERCIM,
+			Keio),
+			All Rights Reserved.
+			W3C liability,
+			trademark,
+			document use
+
+			and software licensing
+
+			rules apply. Your interactions with this site are in accordance
+			with our public and
+			Member privacy
+			statements.
+		
+

@@ -1,0 +1,266 @@
+
+
+
+
+
+
+
+
+data.idref.fr
+
+
+
+Documentation
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+						Bonjour ,
+					
+
+Bienvenue sur IdRef, Identifiants et rÃ©fÃ©rentiels pour l'Enseignement supÃ©rieur et la Recherche.
+
+
+
+
+
+
+
+
+
+
+
+
+Du Cange, Charles Du Fresne (1610-1688 ; sieur)
+
+
+
+
+
+
+
+
+
+
+Exporter en XML
+
+
+
+
+
+
+Exporter en RDF
+
+
+
+
+
+
+Améliorer la notice
+
+
+
+
+
+
+Signaler une erreur
+
+
+
+
+
+
+
+                Identifiant IdRef : 033221618
+
+
+Notice de type
+                        Personne
+                    
+
+
+
+Point d'accès autorisé
+
+
+Du Cange, Charles Du Fresne (1610-1688 ; sieur)
+
+
+
+
+
+
+
+Variantes de point d'accès
+
+
+Du Cange, Charles Dufresne (1610-1688 ; sieur)
+[Nom de personne]
+
+
+Du Fresne, Charles (1610-1688)
+[Nom de personne]
+
+
+Dufresne, Charles (1610-1688)
+[Nom de personne]
+
+
+Cange, Charles Du Fresne Du (1610-1688)
+[Nom de personne]
+
+
+Du Cange (Carolus Du Fresne D.)
+[Nom de personne]
+
+
+
+
+Information
+
+
+Langue d'expression : Francais
+
+
+Pays : France
+
+
+Date de naissance : 18 - 
+                            12 - 
+                            1610
+
+
+Date de mort : 23 - 
+                            10 - 
+                            1688
+
+
+Genre : Masculin
+
+
+
+
+Notes
+
+Note publique d'information : 
+
+A aussi écrit en latin
+
+
+Note publique d'information : 
+
+Latiniste et byzantiniste
+
+
+
+
+
+Source
+
+
+BN Cat. gén. : Du Cange (Charles Dufresne, sieur)
+
+
+
+GLU et GDEL : Cange, Charles Du Fresne, seigneur Du. Laffont-Bompiani, Auteurs et DBF : Du Cange, Charles Du Fresne, sieur
+
+
+
+Traité historique du chef de S. Jean Baptiste / par Charles Dufresne, sieur Du Cange, 1665. Glossarium mediae et infimae latinitatis / Du Cange, 1954  [reprod. de l'éd. de 1883-1887]
+
+
+
+
+Autres identifiants
+
+
+
+
+Identifiant BNF : FRBNF124109639
+
+
+Identifiant ARK : http://catalogue.bnf.fr/ark:/12148/cb12410963q
+
+
+Identifiant ISNI : 0000000121021239
+
+
+
+
+Utilisation dans Rameau
+
+
+Le point d'accès peut être employé dans un point d'accès sujet
+
+
+Le point d'accès ne peut s'employer qu'en élément initial
+
+
+
+
+Informations sur la notice
+
+
+Identifiant de la notice : 033221618
+
+
+Dernière modification : 09-07-2019 à 15 h 50
+
+
+
+
+
+
+
+... Références liées : ...
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+A propos
+Partenaires
+DonnÃ©es Personnelles
+Mentions LÃ©gales
+Conditions GÃ©nÃ©rales d'Utilisation (CGU)
+Assistance
+
+
+
+
+
+
+
+
