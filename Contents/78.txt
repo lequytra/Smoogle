@@ -1,0 +1,228 @@
+
+
+
+
+
+
+
+
+MediaWiki
+
+From MediaWiki.org
+
+
+Jump to navigation
+Jump to search
+
+MediaWiki is a collaboration and documentation platform brought to you by a vibrant community.
+ Photo of participants of the Wikimedia Hackathon 2019
+The MediaWiki software is used by tens of thousands of websites and thousands of companies and organizations.
+It powers Wikipedia and also this website.
+MediaWiki helps you collect and organize knowledge and make it available to people.
+It's powerful, multilingual, free and open, extensible, customizable, reliable, and free of charge.
+Find out more and if MediaWiki is right for you.
+
+
+
+
+Set up and run MediaWiki
+
+Download, install and configure MediaWiki
+Add functionality by installing extensions
+Problems? See Errors and symptoms and FAQ
+Don't own a server? See Hosting services
+Get professional development and consulting 
+Join MediaWiki Stakeholders user group
+
+
+
+Edit and use MediaWiki
+
+Learn how to navigate 
+Learn how to edit a page 
+Learn more about reading, editing, and personal customization 
+
+
+
+Develop and extend code
+
+New to development? Choose a software project to hack on 
+How to work on MediaWiki or extensions' code 
+Already a developer? Visit the developer hub
+Interact with content by using the Action API or Web API
+Read the developer docs
+
+
+
+
+
+Get help and contribute
+
+Cannot find the answer to a problem with MediaWiki? Ask the Support desk!
+Get involved as a translator, designer, documentation writer, tester, tech ambassador, â¦
+Report wrong software behavior or a feature proposal 
+
+
+
+News
+
+
+
+2019-09-25 to 2019-09-27
+
+SMWCon Fall 2019 in Paris, France.
+2019-07-02
+ MediaWiki 1.33.0 is now available.
+ MediaWiki 1.31.3 and 1.32.3 are now available.
+2019-06-07
+ MediaWiki 1.27.7 is now available.
+2019-06-06
+ MediaWiki 1.27.6, 1.30.2, 1.31.2, and 1.32.2 security releases are now available.
+
+ More news
+ 
+
+
+
+
+
+
+
+ Other languages: 
+English  â¢ Ø§ÙØ¹Ø±Ø¨ÙØ© â¢ à¦¬à¦¾à¦à¦²à¦¾ â¢ catalÃ  â¢ Ú©ÙØ±Ø¯Û â¢ ÄeÅ¡tina â¢ Deutsch â¢ espaÃ±ol â¢ ÙØ§Ø±Ø³Û â¢ suomi â¢ franÃ§ais â¢ ×¢××¨××ª â¢ hrvatski â¢ magyar â¢ Bahasa Indonesia â¢ italiano â¢ æ¥æ¬èª â¢ íêµ­ì´ â¢ MirandÃ©s â¢ Nederlands â¢ polski â¢ portuguÃªs â¢ portuguÃªs do Brasil â¢ romÃ¢nÄ â¢ ÑÑÑÑÐºÐ¸Ð¹ â¢ sardu â¢ à·à·à¶à·à¶½ â¢ shqip â¢ à¹à¸à¸¢ â¢ TÃ¼rkÃ§e â¢ ÑÐºÑÐ°ÑÐ½ÑÑÐºÐ° â¢ Tiáº¿ng Viá»t â¢ ç²µèª â¢ ä¸­æ â¢ ä¸­æï¼ç®ä½ï¼â â¢ ä¸­æï¼ç¹é«ï¼â
+
+
+
+
+
+Retrieved from "https://www.mediawiki.org/w/index.php?title=MediaWiki&oldid=3275990"
+Hidden category: Languages pages
+
+
+
+
+Navigation menu
+
+
+Personal tools
+
+EnglishNot logged inTalkContributionsCreate accountLog in 
+
+
+
+Namespaces
+
+MediaWiki.orgDiscussion 
+
+
+
+
+Variants
+
+
+
+
+
+
+
+Views
+
+ReadView sourceView history 
+
+
+
+More
+
+
+
+
+
+Search
+
+
+
+ 
+
+
+
+
+
+
+
+Navigation
+
+
+Main pageGet MediaWikiGet extensionsTech blogContribute 
+
+
+
+Support
+
+
+User helpFAQTechnical manualSupport deskCommunication 
+
+
+
+Development
+
+
+Bug trackerCode repositoryCode docsStatistics 
+
+
+
+MediaWiki.org
+
+
+Community portalRecent changesTranslate contentRandom pageCurrent issuesSandbox 
+
+
+
+In other projects
+
+
+Wikimedia CommonsMeta-WikiWikispeciesWikibooksWikidataWikimaniaWikinewsWikipediaWikiquoteWikisourceWikiversityWikivoyageWiktionary 
+
+
+
+Print/export
+
+
+Create a bookDownload as PDFPrintable version 
+
+
+
+Tools
+
+
+What links hereRelated changesUpload fileSpecial pagesPermanent linkPage informationWikidata itemCite this page 
+
+
+
+
+
+
+ This page was last edited on 14 June 2019, at 18:51.
+Text is available under the Creative Commons Attribution-ShareAlike License;
+additional terms may apply.
+See Terms of Use for details.
+
+
+Privacy policy
+About MediaWiki.org
+Disclaimers
+Code of Conduct
+Developers
+Cookie statement
+Mobile view
+
+
+
+ 
+
+ 
+
+
+
+
+
+

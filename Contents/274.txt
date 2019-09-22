@@ -1,0 +1,267 @@
+
+
+
+
+
+
+
+Phabricator project: #MediaWiki-extensions-TemplateSandbox
+
+Extension:TemplateSandbox
+
+From MediaWiki.org
+
+
+Jump to navigation
+Jump to search
+
+
+ Other languages: 
+English  â¢ Deutsch â¢ ä¸­æ
+
+This is technical documentation of the extension.  There is also a user documentation.
+
+
+MediaWiki extensions manual 
+
+ TemplateSandbox
+Release status:  stable
+
+
+
+
+
+Implementation 
+Special page , Page action 
+
+Description 
+Preview pages using sandboxed templates
+
+
+Author(s) 
+Brad Jorsch (Anomietalk)
+
+
+Latest version 
+1.1.0 (2014-03-29)
+
+
+Compatibility policy 
+release branches
+
+
+MediaWiki 
+1.21+
+
+
+PHP 
+5.5+
+
+
+Database changes 
+No
+
+
+License 
+GNU General Public License 2.0 or later
+
+Download
+Download extension Git [?]: 
+Download Git master
+browse repository (GitHub)
+commit history
+code review
+
+
+
+Parameters 
+
+$wgTemplateSandboxEditNamespaces
+
+
+
+Hooks used 
+AlternateEditPreview EditPage::importFormData EditPage::showStandardInputs:options ApiParseMakeOutputPage APIGetAllowedParams ApiMakeParserOptions 
+
+
+
+
+Translate the TemplateSandbox extension if it is available at translatewiki.net
+
+Check usage and version matrix.
+
+
+
+Issues 
+Open tasks Â· Report a bug
+
+
+The TemplateSandbox extension adds the ability to preview a page using sandboxed versions of templates, allowing for easy testing before making the sandbox code live. It also works with Scribunto modules.
+
+Contents
+
+1 Installation
+2 Configuration
+3 Usage
+4 See also
+
+
+Installation[edit]
+Download and place the file(s) in a directory called TemplateSandbox in your extensions/ folder.
+Add the following code at the bottom of your LocalSettings.php: wfLoadExtension( 'TemplateSandbox' );
+
+ Done â Navigate to Special:Version on your wiki to verify that the extension is successfully installed.
+To users running MediaWiki 1.24 or earlier:
+The instructions above describe the new way of installing this extension using wfLoadExtension(). If you need to install this extension on these earlier versions (MediaWiki 1.24 and earlier), instead of wfLoadExtension( 'TemplateSandbox' );, you need to use:
+
+require_once "$IP/extensions/TemplateSandbox/TemplateSandbox.php";
+
+Configuration[edit]
+Parameters
+$wgTemplateSandboxEditNamespaces: Namespaces in which to show the "Preview page with this template" box below the edit form. NS_TEMPLATE by default. Can be expanded to all namespaces by individual users using advancedtemplatesandbox.js.
+Usage[edit]
+The extension adds a new special page, Special:TemplateSandbox. To preview a page using sandboxed templates, do the following:
+
+Copy the templates to be tested under a common prefix. For example, you might copy Template:Foo to User:Example/sandbox/Template:Foo. Alternatively, you might create User:Example/sandbox/Template:Foo as a redirect to Template:Foo/sandbox.
+Go to Special:TemplateSandbox. Fill in the page or revision to be rendered, and the prefix you chose in step 1. It is possible to specify multiple prefixes (a prefix search path) by separating them using vertical bars, e.g. User:Example/sandbox1|User:Example/sandbox2.
+Click View.
+The extension also adds a box at the bottom of the edit form for pages in the namespaces configured in $wgTemplateSandboxEditNamespaces. This allows for previewing some other page as it would appear were the template being edited saved with the current contents of the edit form.
+
+See also[edit]
+Extension:ExpandTemplates
+Extension:SandboxLink
+Extension:Scribunto â This extension also allows for sandboxing Scribunto modules.
+This extension is being used on one or more Wikimedia projects. This probably means that the extension is stable and works well enough to be used by such high-traffic websites. Look for this extension's name in Wikimedia's CommonSettings.php and InitialiseSettings.php configuration files to see where it's installed. A full list of the extensions installed on a particular wiki can be seen on the wiki's Special:Version page.
+
+
+
+
+Retrieved from "https://www.mediawiki.org/w/index.php?title=Extension:TemplateSandbox&oldid=3303821"
+Categories: GPL licensed extensionsStable extensionsSpecial page extensionsPage action extensionsExtensions in Wikimedia version controlAlternateEditPreview extensionsEditPage::importFormData extensionsEditPage::showStandardInputs:options extensionsApiParseMakeOutputPage extensionsAPIGetAllowedParams extensionsApiMakeParserOptions extensionsAll extensionsExtensions used on WikimediaHidden category: Languages pages
+
+
+
+
+Navigation menu
+
+
+Personal tools
+
+EnglishNot logged inTalkContributionsCreate accountLog in 
+
+
+
+Namespaces
+
+ExtensionDiscussion 
+
+
+
+
+Variants
+
+
+
+
+
+
+
+Views
+
+ReadEditView history 
+
+
+
+More
+
+
+
+
+
+Search
+
+
+
+ 
+
+
+
+
+
+
+
+Navigation
+
+
+Main pageGet MediaWikiGet extensionsTech blogContribute 
+
+
+
+Support
+
+
+User helpFAQTechnical manualSupport deskCommunication 
+
+
+
+Development
+
+
+Bug trackerCode repositoryCode docsStatistics 
+
+
+
+MediaWiki.org
+
+
+Community portalRecent changesTranslate contentRandom pageCurrent issuesSandbox 
+
+
+
+Print/export
+
+
+Create a bookDownload as PDFPrintable version 
+
+
+
+Tools
+
+
+What links hereRelated changesUpload fileSpecial pagesPermanent linkPage informationWikidata itemCite this page 
+
+
+
+In other languages
+
+
+
+Add links 
+
+
+
+
+
+ This page was last edited on 7 July 2019, at 04:03.
+Text is available under the Creative Commons Attribution-ShareAlike License;
+additional terms may apply.
+See Terms of Use for details.
+
+
+Privacy policy
+About MediaWiki.org
+Disclaimers
+Code of Conduct
+Developers
+Cookie statement
+Mobile view
+
+
+
+ 
+
+ 
+
+
+
+

@@ -1,0 +1,531 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Grinnell College Golf Course
+
+
+
+
+Course Homepage  |  
+                
+									Tee Times  |  
+											Log In
+
+
+
+
+
+Main menu toggle
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Tee Times
+Course Homepage
+Log In
+
+
+
+
+
+
+
+
+
+
+Our course is laid out in a manner that respects the traditions of golf, yet utilizes modern technologies and equipment to create a unique golf experience. The course is not long, but that doesn't mean it's easy. Tee shots hit in the fairways will be well-rewarded, however our age-old trees and lush rough are always welcome recipients of your golf ball.
+
+Play Well!
+Our course is laid out in a manner that respects the traditions of golf, yet utilizes modern technologies and equipment to create a unique golf experience. The course is not long, but that doesn't mean it's easy. Tee shots hit in...
+
+Click to Read More
+
+
+
+Our course is laid out in a manner that respects the traditions of golf, yet utilizes modern technologies and equipment to create a unique golf experience. The course is not long, but that doesn't mean it's easy. Tee shots hit in the fairways will be well-rewarded, however our age-old trees and lush rough are always welcome recipients of your golf ball.
+
+Play Well!
+
+
+
+
+
+
+
+{{selections.course.slope}}
+Slope
+
+
+{{selections.course.par}}
+Par
+
+
+{{selections.course.rating}}
+Rating
+
+
+
+
+
+
+
+Read Less
+
+
+
+
+
+
+
+{{selections.course.slope}}
+Slope
+
+
+{{selections.course.par}}
+Par
+
+
+{{selections.course.rating}}
+Rating
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+{{ selections.course.name }}
+
+
+
+
+
+
+
+arrow down icon
+
+
+Show Tee Times For:
+
+{{course.name}}
+
+
+
+
+
+
+
+{{selections.date | amDateFormat:'dddd, MMMM Do'}}
+{{selections.date | amDateFormat:'ddd, MMMM Do'}}
+{{selections.date | amDateFormat:'ddd, MMM Do'}}
+
+
+
+calendar icon
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+{{ selections.holes }} holes
+
+arrow down icon
+
+
+
+
+
+
+
+
+{{hole}} holes
+
+
+
+
+
+
+{{ selections.players }} player{{ (selections.players > 1) ? 's' : null }}
+
+arrow down icon
+
+
+
+
+
+
+
+
+{{p}} players
+
+
+
+Search
+
+
+
+
+
+{{ selections.addons=='on' ? 'W/ Cart' : 'W/O Cart' }}
+
+
+
+
+
+
+
+
+
+
+{{page.addonSelectArray[addons]}}
+
+
+
+
+
+
+Show tee times for:
+
+
+{{course.name}}
+
+
+
+
+
+
+
+Date Of Play:
+
+{{selections.date | amDateFormat:'dddd, MMMM Do'}}
+calendar icon
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Number of holes
+
+
+{{hole}} holes
+
+
+Number of players
+
+
+{{player}}
+
+
+Addons
+
+
+With Cart
+
+
+Without Cart
+
+
+
+Search
+
+
+
+
+
+
+
+
+
+
+
+Tee times are currently unavailable due to maintenance. Please check back soon.
+
+
+
+
+
+
+
+
+
+
+
+
+{{info.text}}
+
+
+
+
+
+
+
+Booking Information
+
+
+
+
+
+{{info.text}}
+
+
+
+
+
+
+
+
+
+
+Location
+
+
+
+
+
+
+                                933 13th AvenueGrinnell, IA 50112
+                                                                    Grinnell
+                                                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+Available Tee Times
+
+
+Time
+Rate
+Reserve
+
+
+
+
+{{ dateTimeHelper.time(teeTime.teeTime) }}
+
+
+${{ teeTimePrice(teeTime) }} ea
+{{ teeTime.$$pricingProfile }}
+
+
+
+${{ teeTimePrice(teeTime) }}
+ea
+
+
+${{ teeTimePrice(teeTime) }}
+ea
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Message
+Sorry, there are no available tee times on  {{selections.date | amDateFormat:'dddd, MMMM Do'}}. Please adjust the parameters selected above, or select from the next available days below.
+Sorry, all of the tee times have been booked! Click here to view the rest of the dayâs tee times.
+
+
+
+
+{{ time | amDateFormat:'dddd' }}
+{{ time | amDateFormat:'MMMM Do' }}
+
+VIEW TEE TIMES
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+Powered by Teesnap v3.7.0
+
+
+
+
+Contact
+
+
+{{:: property.email }}
+
+
+{{:: property.phone }}
+{{:: property.phone }}
+
+ 
+
+
+                            {{:: property.address_street }} 
+                            {{:: property.address_city }}, {{:: property.address_region }} {{:: property.address_code }}
+                            
+                            {{:: property.address_metro ? property.address_metro : '' }}
+                        
+
+
+
+
+Subscribe to our mailing list for specials:
+
+
+Subscribe to our mailing list for specials:
+
+Submit
+
+{{:: VALIDATION_MESSAGES.REQUIRED.EMAIL }}
+{{:: VALIDATION_MESSAGES.PATTERN.EMAIL }}
+
+
+{{ footer.emailError }}
+
+
+{{ footer.emailSuccess }}
+
+
+Submit
+
+
+
+Social
+
+Facebook
+Google Plus
+Instagram
+Twitter
+
+
+
+
+
+
+Powered by Teesnap v3.7.0
+
+
+
+
+
+
+
+{{  isHighContrastEnabled ? 'Reduce' : 'Increase' }} Contrast
+            
+
+
+
+
+
+
+

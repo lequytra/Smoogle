@@ -1,0 +1,277 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Research Home 
+ Tools  Union List of Artist Names  Full Record Display 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Click the  icon to view the hierarchy. 
+
+Semantic View (JSON, JSONLD, RDF, N3/Turtle, N-Triples)
+ID: 500278116Page Link: http://vocab.getty.edu/page/ulan/500278116 
+Record Type: Person
+
+
+
+Du Cange, Charles Du Fresne, sieur (French philologist, 1610-1688)
+
+
+Note: French philologist and historian.
+
+
+Names:
+,
+
+Du Cange, Charles Du Fresne, sieur (preferred,V,index,LCO)
+
+
+
+Charles Du Fresne, sieur Du Cange (V,display)
+
+
+
+Cange, Charles Du Fresne, sieur Du (V)
+
+
+
+Du Cange, M. Charles Du Fresne (V)
+
+
+
+Ducangius, Carolus (V)
+
+
+
+Du Fresne, Carolus (V)
+
+
+
+Dufresne, Carolus, Dominus Du Cange (V)
+
+
+
+Dufresne, Charles, sieur Du Cange (V)
+
+
+
+Du Fresne Du Cange (V)
+
+
+
+Dufresne Du Cange, Charles, sieur (V)
+
+
+
+
+Nationalities:
+
+
+French (preferred)
+
+
+
+Roles:
+
+
+philologist (preferred)
+
+
+
+historian
+
+
+
+
+Gender: male
+
+
+List/Hierarchical Position:
+
+
+
+
+ .... 
+Non-Artists 
+
+ ........ 
+Du Cange, Charles Du Fresne, sieur (I,U) 
+
+
+
+
+Biographies:
+
+
+(French philologist, 1610-1688) ..... [AVERY Preferred]
+(French philologist, died 1688.) ..... [AVERY]
+(French philologist) ..... [AVERY]
+
+
+
+
+Additional Names:
+
+
+Sources and Contributors:
+
+
+
+
+
+
+Cange, Charles Du Fresne, sieur Du ........ [AVERY]
+
+
+................................................................. 
+Avery Authority files (1963-) 
+
+
+Charles Du Fresne, sieur Du Cange ........ [VP]
+
+
+............................................................... 
+Getty Vocabulary Program rules 
+
+
+Du Cange, Charles Du Fresne, sieur ........ [AVERY Preferred, VP]
+
+
+................................................................. 
+Avery Authority files (1963-) 
+................................................................. 
+Library of Congress Authorities online (2002-) NAFL85010480, accessed 27 August 2009
+
+
+Du Cange, M. Charles Du Fresne ........ [AVERY, VP]
+
+
+.......................................................... 
+Avery Authority files (1963-) 
+
+
+Ducangius, Carolus ........ [AVERY]
+
+
+...................................... 
+Avery Authority files (1963-) 
+
+
+Du Fresne, Carolus ........ [AVERY]
+
+
+..................................... 
+Avery Authority files (1963-) 
+
+
+Dufresne, Carolus, Dominus Du Cange ........ [AVERY]
+
+
+..................................................................... 
+Avery Authority files (1963-) 
+
+
+Dufresne, Charles, sieur Du Cange ........ [AVERY]
+
+
+................................................................ 
+Avery Authority files (1963-) 
+
+
+Du Fresne Du Cange ........ [AVERY]
+
+
+.................................... 
+Avery Authority files (1963-) 
+
+
+Dufresne Du Cange, Charles, sieur ........ [AVERY]
+
+
+................................................................ 
+Avery Authority files (1963-) 
+
+
+Subject: ........ [AVERY, Gallery Systems, VP]
+
+.................... 
+Gallery Systems (2000-) LOC ID: n85010480
+.................... 
+LCNAF Library of Congress Name Authority File  [n.d.] 
+.................... 
+Library of Congress Authorities database (n.d.) LOC ID: n85010480
+
+ 
+Note:
+English .......... [AVERY]
+
+ .......... LCNAF Library of Congress Name Authority File  [n.d.] 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,165 @@
+
+
+
+
+
+
+
+
+Template:Midwest Conference navbox
+
+From Wikipedia, the free encyclopedia
+
+
+Jump to navigation
+Jump to search
+vteMidwest ConferenceFull members
+Beloit Buccaneers
+Cornell Rams
+Grinnell Pioneers
+Illinois College Blue Boys & Lady Blues
+Knox Prairie Fire
+Lake Forest Foresters
+Lawrence Vikings
+Monmouth Fighting Scots
+Ripon Red Hawks
+St. Norbert Green Knights (leaving in 2020)
+Multi-sport affiliate
+Chicago Maroons (baseball and football)
+Football-only member
+Macalester Scots
+
+Initial visibility: currently defaults to autocollapse
+To set this template's initial visibility, the |state= parameter may be used:
+
+
+|state=collapsed: {{Midwest Conference navbox|state=collapsed}} to show the template collapsed, i.e., hidden apart from its title bar
+|state=expanded: {{Midwest Conference navbox|state=expanded}} to show the template expanded, i.e., fully visible
+|state=autocollapse: {{Midwest Conference navbox|state=autocollapse}}
+
+shows the template collapsed to the title bar if there is a {{navbar}}, a {{sidebar}}, or some other table on the page with the collapsible attribute
+shows the template in its expanded state if there are no other collapsible items on the page
+
+If the |state= parameter in the template on this page is not set, the template's initial visibility is taken from the |default= parameter in the Collapsible option template. For the template on this page, that currently evaluates to autocollapse.
+
+
+
+
+
+Retrieved from "https://en.wikipedia.org/w/index.php?title=Template:Midwest_Conference_navbox&oldid=892512414"
+Categories: NCAA Division III conference navigational boxesMidwest ConferenceHidden categories: Navboxes using background colours
+
+
+
+
+
+
+
+Navigation menu
+
+
+Personal tools
+
+Not logged inTalkContributionsCreate accountLog in 
+
+
+
+Namespaces
+
+TemplateTalk 
+
+
+
+
+Variants
+
+
+
+
+
+
+
+Views
+
+ReadEditView history 
+
+
+
+More
+
+
+
+
+
+Search
+
+
+
+ 
+
+
+
+
+
+
+
+Navigation
+
+
+Main pageContentsFeatured contentCurrent eventsRandom articleDonate to WikipediaWikipedia store 
+
+
+
+Interaction
+
+
+HelpAbout WikipediaCommunity portalRecent changesContact page 
+
+
+
+Tools
+
+
+What links hereRelated changesUpload fileSpecial pagesPermanent linkPage informationWikidata item 
+
+
+
+Print/export
+
+
+Download as PDF 
+
+
+
+Languages
+
+
+
+Add links 
+
+
+
+
+
+ This page was last edited on 15 April 2019, at 01:35 (UTC).
+Text is available under the Creative Commons Attribution-ShareAlike License;
+additional terms may apply.  By using this site, you agree to the Terms of Use and Privacy Policy. WikipediaÂ® is a registered trademark of the Wikimedia Foundation, Inc., a non-profit organization.
+
+
+Privacy policy
+About Wikipedia
+Disclaimers
+Contact Wikipedia
+Developers
+Cookie statement
+Mobile view
+
+
+
+ 
+
+ 
+
+
+
+

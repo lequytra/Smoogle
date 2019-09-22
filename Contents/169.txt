@@ -1,0 +1,566 @@
+
+Google Tag Manager
+
+
+
+
+
+
+Top Nav - Audience Nav
+
+
+Students
+
+
+Admitted Students
+
+
+Incoming Student Checklist
+
+
+New Student Orientation
+
+
+Housing Information
+
+
+Early Arrival
+
+
+Move-In Information
+
+
+Your Advisers
+
+
+
+
+Current Students
+
+
+GrinnellShare
+
+
+Academic Catalog
+
+
+Schedule of Courses
+
+
+Handshake
+
+
+
+
+
+
+Families
+
+
+Family Resource Guide
+
+
+Academic Calendar
+
+
+Academic Catalog
+
+
+Commencement
+
+
+Transportation
+
+
+
+
+Faculty and Staff
+
+
+GrinnellShare
+
+
+Academic Catalog
+
+
+Dean's Office
+
+
+
+
+Alumni
+
+
+Alumni Community
+
+
+Giving to Grinnell
+
+
+Volunteering
+
+
+News and Awards
+
+
+Events
+
+
+College Resources
+
+
+
+
+
+
+Top Bar - Utility Links - Left
+
+
+Visit
+
+
+Apply
+
+
+Give
+
+
+
+
+Top Bar - Utility Links - Right
+
+
+News
+
+
+Calendar
+
+
+People
+
+
+
+
+
+
+
+      Skip to main content
+    
+
+
+
+
+
+
+
+
+Search Button 
+
+
+
+
+
+
+
+
+
+
+
+Expand/Collpase Menu
+
+
+
+
+
+About Grinnell
+Expand
+
+
+
+
+Grinnell at a Glance
+
+
+Leadership and Administration
+
+
+Grinnell Prize
+
+
+Grinnell College National Poll
+
+
+
+
+
+
+Admission and Aid
+Expand
+
+
+
+
+Why Grinnell
+
+
+Tuition and Financial Aid
+
+
+Visit Grinnell
+
+
+Apply to Grinnell
+
+
+
+
+
+
+Academics
+Expand
+
+
+
+
+Majors and Concentrations
+
+
+The Academic Experience
+
+
+Global
+
+
+Centers, Programs, and Resources
+
+
+Libraries
+
+
+
+
+
+
+Life at Grinnell
+Expand
+
+
+
+
+Grinnell, Iowa
+
+
+Athletics
+
+
+Student Organizations
+
+
+Arts & Culture
+
+
+Campus Living
+
+
+Transportation
+
+
+
+
+
+
+After Grinnell
+Expand
+
+
+
+
+Center for Careers, Life, and Service
+
+
+Experiential Learning
+
+
+Graduate Outcomes
+
+
+Alumni Stories
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      Web Accessibility Statement
+
+
+
+
+
+
+
+
+
+
+
+Expand
+                In This Section            
+
+
+
+
+
+
+
+
+
+
+
+
+
+Home
+Web Accessibility Statement
+
+
+
+
+
+
+
+
+
+
+
+
+Grinnell College is committed to providing a website that is accessible to the widest possible audience, regardless of technology or ability.
+This website endeavors to comply with best practices and standards as defined by Section 508 of the U.S. Rehabilitation Act and level AA of the World Wide Web Consortium (W3C) Web Content Accessibility Guidelines 2.0. These guidelines explain how to make web content more accessible for people with disabilities. Conformance with these guidelines will help make the web more user-friendly for all people.
+If you would like additional assistance or have accessibility concerns, please contact the Office of Communications, 641-269-3400.
+All site pages are being run through a W3C compliant validation product, currently SiteImproveâ¢, to monitor compliancy to WCAG guidelines.Â 
+We will continue to test the site to make sure that all content on the site is accessible to all visitors.
+We will also continue to work to improve the accessibility standards of our website.
+Accessibility Features
+This site includes the following accessibility features:
+Skip to content
+Alternative text detail for images (currently in progress for older images)
+Captioned videos
+
+Standards Compliance
+All static pages follow U.S. Federal Government Section 508 Guidelines.
+All static pages follow priorities 1 & 2 guidelines of the W3C Web Content Accessibility Guidelines.
+All static pages validate as HTML5.
+All static pages on this site use structured semantic markup. H2 tags are used for main titles, H3 and H4 tags for subtitles.
+Structural Markup
+Web pages include 4 different areas:
+A header bar that includes the main navigation,
+A main content area,
+A side bar,
+A footer.
+When CSS (Cascading Styles Sheet) are not applied to a document (or when using a screen reader), the 4 areas are read in the above order.
+Access keys
+Most browsers support jumping to specific links by typing keys defined on the web site. On Windows, you can press ALT + an access key; on Macintosh, you can press Control + an access key.
+All pages on this site define the following access keys:
+Access key 1
+Home page
+Access key 2
+Forum (Alumni) Home Page
+Access key 3
+My Account
+Access key 4
+Search
+Access key 0
+Accessibility Statement
+Additional navigation aids
+Search results can be navigated by using the following access keys:
+Access key f
+First results page
+Access key n
+Next results page
+Access key p
+Previous results page
+Access key l
+Last results page
+Images
+Unless they are purely decorative items, all images used on this web site have suitable alt attributes.
+Content should be usable/accessible with images "off" (disabled).
+Links
+Many links have title attributes which describe the link in greater detail, unless the text of the link already fully describes the target.
+Links are written to make sense out of context.
+URLs are permanent whenever possible.
+Forms
+All form controls are appropriately and explicitly labeled.
+Scripts
+The static pages of this web site are usable without JavaScript.
+Pop up Windows
+In visual browsers, the title attribute of links to external resources says "opens in new window".
+Browsers with Popup Blockers should be able to access these external documents.
+Visual design
+This site uses cascading style sheets for visual layout.
+If your browser or browsing device does not support stylesheets at all, the content of each page is still readable.
+Any information conveyed through the use of color is also available without color (i.e. text based).
+
+Known Accessibility Issues
+We are currently working to fix the following issues (as of May 2017):
+New text content is now added to the site using appropriate structural markup. We are reviewing older content (prior to October 2013) and continuously working to make it compliant.
+New videos are added with captions and/or transcripts. We are currently working to provide captions and transcripts for older audio and video materials.
+Images added to the site prior to October 2013 may lack alternative text detail.
+Accessibility References
+W3C accessibility guidelines, which explains the reasons behind each guideline.
+U.S. Federal Government Section 508 accessibility guidelines.
+Accessibility software
+JAWS, a screen reader for Windows. A time-limited, downloadable demo is available.
+Lynx, a free text-only web browser for blind users with refreshable Braille displays.
+Links, a free text-only web browser for visual users with low bandwidth.
+Opera, a visual browser with many accessibility-related features, including text zooming, user stylesheets, image toggle. A free downloadable version is available. Compatible with Windows, Macintosh, Linux, and several other operating systems.
+Accessibility services
+WAVE, a free service from WebAIM to analyze web pages for compliance to accessibility guidelines.
+HTML Validator, a free service for checking that web pages conform to published HTML standards.
+Web Page Backward Compatibility Viewer, a tool for viewing your web pages without a variety of modern browser features.
+Lynx Viewer, a free service for viewing what your web pages would look like in Lynx.
+Related
+WebAIM, a non-profit organization dedicated to improving accessibility to online learning materials.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Request Info
+
+Visit
+
+Apply
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+1115 8th Avenue
+Grinnell, IA 50112
+
+641-269-4000
+
+
+Directions and Map
+
+
+
+
+
+
+
+Museum of Art
+
+Athletics
+
+Bookstore
+
+Careers
+
+
+
+Policies
+PRIVACY STATEMENT
+Consumer Information
+Sexual Respect
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+We use cookies to enable essential services and functionality on our site, enhance your user experience, provide a better service through personalized content, collect data on how visitors interact with our site, and enable advertising services.
+To accept the use of cookies and continue on to the site, click "I Agree." For more information about our use of cookies and to opt-out of cookies at any time, please refer to our website Privacy Policy.
+
+
+
+        I Agree
+      
+
+        More Info
+      
+
+
+
+
+
+
+
+

@@ -1,0 +1,147 @@
+skip navigation
+
+Library of CongressSearch
+
+Everything
+Audio Recordings
+Books/Printed Material
+Films, Videos
+Legislation
+Manuscripts/Mixed Material
+Maps
+Notated Music
+Newspapers
+Periodicals
+Personal Narratives
+Photos, Prints, Drawings
+Software, E-Resources
+Archived Web Sites
+Web Pages
+3D Objects
+
+Suggestions enabled.
+Search
+
+Search togglemenu 
+
+Discover
+Services
+Visit
+Education
+Connect
+About
+
+
+Ask a Librarian
+Help
+Contact
+
+
+Search Online Catalog
+Copyright.gov
+Congress.gov
+
+
+
+The Library of Congress > Linked Data Service > LC Name Authority File (LCNAF)Du Cange, Charles Du Fresne, sieur, 1610-1688
+URI(s)
+http://id.loc.gov/authorities/names/n85010480
+Instance Of
+MADS/RDF PersonalName
+MADS/RDF Authority
+SKOS Concept 
+Scheme Membership(s)
+Library of Congress Name Authority File
+Collection Membership(s)
+Names Collection - Authorized Headings
+LC Names Collection - General Collection
+Variants
+Cange, Charles Du Fresne du, 1610-1688
+Du Cange, M. (Charles Du Fresne), 1610-1688
+Du Fresne, Carolus, 1610-1688
+Du Fresne, Charles, sieur Du Cange, 1610-1688
+Du Fresne Du Cange, 1610-1688
+Du Fresne Du Cange, Charles, sieur, 1610-1688
+Ducangius, Carolus, 1610-1688
+Dufresne, Carolus, Dominus Du Cange, 1610-1688
+Additional Information
+http://id.loc.gov/rwo/agents/n85010480
+
+Birth Date(edtf) 1610-12-18
+Death Date(edtf) 1688-10-23
+Birth Place
+Paris (France)
+
+Death Place
+Paris (France)
+
+Gender
+Males
+
+Occupation
+Historians
+
+
+Philologists
+
+
+Closely Matching Concepts from Other Schemes
+Charles du Fresne, sieur du Cange Label from public data source Wikidata
+Du Cange, Charles Du Fresne, sieur 
+Du Cange, Charles Du Fresne, sieur, 1610-1688 
+Sources
+
+found: Illyricum vetus et novum, 1746:t.p. (... Carolo Du Fresne, domino Du Cange)
+
+found: InU/Wing STC files(usage: ... Caroli Du Fresne; Charles Du Fresne, sieur Du Cange; ... Carolo Dufresne, domino du Cange; Du Fresne Du Cange; ... Caroli Ducangii; M. Du Cange)
+
+found: Dict. de biog. franÃ§aise(Du Cange, Charles Du Fresne, sieur; b. December 18, 1610; died October 23,1688)
+
+
+found: Wikipedia (French), June 11, 2017(Charles du Fresne, sieur du Cange ou Du Cange, nÃ© le 18 dÃ©cembre 1610 Ã  Amiens et mort le 23 octobre 1688 Ã  Paris, est un historien, linguiste et philologue franÃ§ais.) - https://fr.wikipedia.org/wiki/Charles_du_Fresne,_sieur_du_Cange
+
+found: BnF in VIAF, June 11, 2017(Du Cange&#x200f;, Charles Du Fresne, 1610-1688; information: Historien, Ã©pigraphe, numismate, philologue. Avocat au parlement de Paris. TrÃ©sorier de France (Ã  partir de 1645))&#x200f; &#x200f;
+Change Notes
+
+1985-04-11: new
+
+2017-06-13: revised
+Alternate Formats
+RDF/XML (MADS and SKOS)
+N-Triples (MADS and SKOS)
+JSON (MADS/RDF and SKOS/RDF)
+MADS - RDF/XML
+MADS - N-Triples
+MADS/RDF - JSON
+SKOS - RDF/XML
+SKOS - N-Triples
+SKOS - JSON
+MADS/XML
+MARC/XML
+Subject Of WorksLooking for realted works...Contributor To WorksLooking for realted works...
+
+Follow Us
+ Email
+ Facebook
+ Twitter
+ Youtube
+ Pinterest
+ Flickr
+ Instagram
+ iTunes
+Take our survey External
+
+Accessibility
+Legal
+Inspector General
+External Link Disclaimer
+USA.gov
+Careers
+Contact
+Media
+Donate
+Shop
+
+Congress.gov
+United States Copyright Office
+
