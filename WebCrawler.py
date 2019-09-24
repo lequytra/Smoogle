@@ -15,14 +15,14 @@ def crawl (url, dic_id):
     '''
     crawl webpage from given url and update list
     '''
-    if (crawled.__contains__(url)) and "alumni.grinnell.edu" in str(url):
+    if (crawled.__contains__(url)):
         needToCrawl.pop(url, None) 
         return
 
     print("Start crawling: "+ url)
     
     open_url = urllib.request.urlopen(url)
-    soup = BeautifulSoup(open_url, features="html.parser",from_encoding="iso-8859-1")
+    soup = BeautifulSoup(open_url, features="html.parser", from_encoding="iso-8859-1")
     body = soup.body
 
     if body is None:
@@ -68,6 +68,8 @@ def addLinks (source, dic_id):
 
     for i in links:
         link = i['href']
+        if str(link).endswith("/"):
+            link = link[:-1]
         if validators.url(link) and not str(link).endswith("/events" or ".pdf" or ".jpg") and not "archive" in str(link) and not str(link).startswith("https://web.archive.org/" or "https://npgallery.nps.gov"):
             try: 
                 if urllib.request.urlopen(link, timeout= 10).getcode() == 200: # valid request
@@ -80,6 +82,7 @@ def addLinks (source, dic_id):
                         print(str(newID))
                         newID += 1
                         webGraph.insert_edge(dic_id, newID)
+            # Error Handling while url request
             except TimeoutError as e:
                 pass
             except urllib.error.HTTPError as e:
@@ -99,10 +102,12 @@ def addLinks (source, dic_id):
     last_id = newID
 
 ## Set up os.path
-save_path = '/mnt/c/Users/stella/Documents/Github/Search-Engine/Contents'
+curr_dir = os.getcwd()
+save_path = os.path.join(curr_dir, 'Contents')
+data_path = os.path.join(curr_dir, 'Data')
 
-if not os.path.exists('/mnt/c/Users/stella/Documents/Github/Search-Engine/Data/url_id.csv'):
-    start_url = 'https://en.wikipedia.org/wiki/Grinnell_College'
+if not os.path.exists(os.path.join(data_path, 'url_id.csv')): # When there is no existing web crawling results
+    start_url = 'https://en.wikipedia.org/wiki/Grinnell_College' # seed url when there is no existing url_id list
     current = 0
     crawled = []
     needToCrawl = {}
@@ -114,35 +119,37 @@ if not os.path.exists('/mnt/c/Users/stella/Documents/Github/Search-Engine/Data/u
     crawl_url_id = {}
     crawl_id_url = {}
     webGraph = Graph ()
-else:
-    ntc = csv.reader(open("/mnt/c/Users/stella/Documents/Github/Search-Engine/Data/need_to_crawl.csv"))
+else: # Upload previous web crawling results
+    ntc = csv.reader(open(os.path.join(data_path, 'need_to_crawl.csv')))
     needToCrawl = {}
     for row in ntc:
         needToCrawl.update({row[0]: row[1]})
-    ui = csv. reader(open("/mnt/c/Users/stella/Documents/Github/Search-Engine/Data/url_id.csv"))
+    ui = csv.reader(open(os.path.join(data_path, 'url_id.csv')))
     url_id = {}
     for row in ui:
         url_id.update({row[0]: row[1]})
-    iu = csv. reader(open("/mnt/c/Users/stella/Documents/Github/Search-Engine/Data/id_url.csv"))
+    iu = csv. reader(open(os.path.join(data_path, 'id_url.csv')))
     id_url = {}
     for row in iu:
         id_url.update({row[0]: row[1]})
     current = int(list(id_url.keys())[-1])
-    cui = csv. reader(open("/mnt/c/Users/stella/Documents/Github/Search-Engine/Data/c_url_id.csv"))
+    cui = csv.reader(open(os.path.join(data_path, 'c_url_id.csv')))
     crawl_url_id = {}
     for row in cui:
         crawl_url_id.update({row[0]: row[1]})
-    ciu = csv. reader(open("/mnt/c/Users/stella/Documents/Github/Search-Engine/Data/c_id_url.csv"))
+    ciu = csv. reader(open(os.path.join(data_path, 'c_id_url.csv')))
     crawl_id_url = {}
     for row in ciu:
         crawl_id_url.update({row[0]: row[1]})
     crawled = list(crawl_url_id.keys())
-    webGraph = pickle.load (open ("/mnt/c/Users/stella/Documents/Github/Search-Engine/Data/graph.p", "rb"))
 
+    webGraph = pickle.load(open(os.path.join(data_path, 'graph.p'), "rb"))
+
+# last_id is lastest id the program used for web graph
 global last_id
 last_id = int(current)
         
-for numCrawled in range(0, 50):
+for numCrawled in range(0, 50): # Control how many web pages to crawl for one time running
     if len(needToCrawl) >= 1:
         if (len(needToCrawl) > 1000):
             tempRange = (int) (len(needToCrawl)/250)
@@ -158,32 +165,32 @@ for numCrawled in range(0, 50):
     else:
         break
 
-# Save url_to_id, id_to_url dictionary in the local directory
+# Save results from web crawling
 with open(os.path.join(save_path, "need_to_crawl.csv"), "w+") as f:
     w = csv.writer(f)
     for key, val in needToCrawl.items():
 	    w.writerow([key, val])
 
-# Save url_to_id, id_to_url dictionary in the local directory
-with open(os.path.join(save_path, "url_id.csv"), "w+") as f:
+with open(os.path.join(data_path, "url_id.csv"), "w+") as f:
     w = csv.writer(f)
     for key, val in url_id.items():
 	    w.writerow([key, val])
 
-with open(os.path.join(save_path, "id_url.csv"), "w+") as f:
+with open(os.path.join(data_path, "id_url.csv"), "w+") as f:
     w = csv.writer(f)
     for key, val in id_url.items():
 	    w.writerow([key, val])
 
-with open(os.path.join(save_path, "c_url_id.csv"), "w+") as f:
+with open(os.path.join(data_path, "c_url_id.csv"), "w+") as f:
     w = csv.writer(f)
     for key, val in crawl_url_id.items():
 	    w.writerow([key, val])
 
-with open(os.path.join(save_path, "c_id_url.csv"), "w+") as f:
+with open(os.path.join(data_path, "c_id_url.csv"), "w+") as f:
     w = csv.writer(f)
     for key, val in crawl_id_url.items():
 	    w.writerow([key, val])
+        
 # Save web graph
 webGraph.save_graph()
 
