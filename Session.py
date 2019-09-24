@@ -75,7 +75,7 @@ class Session:
         print("Searching through {} documents...".format(self.N))
 
         kw = extract_keywords(query, stem=True)
-        print(kw)
+
         tf_idf = np.empty((0, self.N))
 
         tf_idf = np.array([np.append(tf_idf, self.tf_idf[word]) for word in kw if word in self.BIR])
