@@ -34,6 +34,7 @@ class Session:
         """
             Method takes in a query and evaluate it, retrieve relevant
             documents and rank it based on the PageRank scores.
+        :param top_k:
         :param query:
         :return:
         """
@@ -64,6 +65,9 @@ class Session:
 
         docs, scores = zip(*pairs)
 
+        print("Found {} in {} documents!!".format(len(docs), self.N))
+        print("Returning {}".format(top_k))
+
         return docs[:top_k], scores[:top_k]
 
     def search(self, query, top_k=10):
@@ -89,6 +93,9 @@ class Session:
         res = sorted(zip(retrieved_doc, final), key=lambda x: x[1], reverse=True)
 
         doc, scores = zip(*res)
+
+        print("Found {} in {} documents!!".format(len(doc), self.N))
+        print("Returning {}".format(top_k))
 
         return doc[:top_k], scores[:top_k]
 
