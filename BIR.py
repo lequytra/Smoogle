@@ -61,7 +61,7 @@ class BIR:
                 f, postings = self.dictionary[term]
 
                 postings.append(document)
-                f += 1
+                self.dictionary[term] = (f + 1, postings)
 
             else:
                 f = 1
