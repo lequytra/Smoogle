@@ -1,6 +1,7 @@
 from rake_nltk import Rake
 from nltk.stem import PorterStemmer
 import numpy as np
+import nltk
 
 
 def normalize(v):
@@ -10,20 +11,17 @@ def normalize(v):
     return v / norm
 
 
-def extract_keywords(query, stem=True, return_score=False):
+def extract_keywords(query, stem=True):
     r = Rake()
     r.extract_keywords_from_text(query)
-    ls = r.get_ranked_phrases_with_scores()
+    kw = r.get_ranked_phrases()
+    word_ls = nltk.word_tokenize(query)
 
-    scores, kw = zip(*ls)
-
-    scores = normalize(scores)
+    total = set(kw + word_ls)
 
     if stem:
         ps = PorterStemmer()
-        kw = [ps.stem(word) for word in kw]
+        return list(map(ps.stem, total))
 
-    if return_score:
-        return scores, kw
     else:
-        return kw
+        return list(total)

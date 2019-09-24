@@ -1,6 +1,5 @@
 from collections import defaultdict, Counter
 import numpy as np
-from functools import reduce
 import os
 import pickle as p
 from functools import reduce
@@ -8,8 +7,8 @@ from functools import reduce
 
 class Doc:
 
-    def __init__(self, id, term_freq, most_common):
-        self.doc_id = id
+    def __init__(self, idx, term_freq, most_common):
+        self.doc_id = int(idx)
         self.term_freq = term_freq
         self.most_common = most_common
 
@@ -25,9 +24,9 @@ class Doc:
 
 class BIR:
     def __init__(self, normalization_factor=2):
-        self.dictionary = defaultdict(tuple)
+        self.dictionary = dict()
         self.alpha = normalization_factor
-        self.N = 0
+        self.N = 400
 
     def insert_document(self, doc, idx):
         """
@@ -43,8 +42,15 @@ class BIR:
                 - doc: A list of words contained in the document.
                 - idx: The unique index assigned to the document.
         """
+        self.N += 1
+        if not doc or len(doc) == 0:
+            return
         c = Counter(doc)
         # Get the highest frequency
+
+        if not c:
+            return
+
         most_freq = c.most_common(1)[0][1]
 
         for term, freq in c.items():
@@ -63,7 +69,7 @@ class BIR:
                 # Add the term and its information to the dictionary
                 self.dictionary[term] = (f, postings)
 
-                self.N += 1
+
 
         return
 
@@ -145,9 +151,9 @@ class BIR:
         """
 
         if term in self.dictionary:
-            return [doc.doc_id for doc in self.dictionary[term][1]]
+            return np.array([int(doc.doc_id) for doc in self.dictionary[term][1]])
         else:
-            return []
+            return np.empty(shape=(0,))
 
     def get_scores(self, term):
         """
@@ -175,7 +181,7 @@ class BIR:
 
     def get_ids_by_term(self, term):
 
-        return [doc.get_id() for doc in self.dictionary[term][1]]
+        return [doc.get_id() for doc in self.dictionary[term][1] if term in self.dictionary]
 
     def get_term(self, term):
 
@@ -233,9 +239,11 @@ class BIR:
             print("Cannot save file")
             return False
 
-    def save(self, filename=None, path=None):
+    def save(self, save_bir=True, filename=None, filename_bir=None, path=None):
         if not filename:
-            filename = 'bir.p'
+            filename = 'document_data.p'
+        if not filename_bir:
+            filename_bir = 'bir.p'
 
         if not path:
             path = os.path.join(os.getcwd(), 'Data')
@@ -245,7 +253,17 @@ class BIR:
         if not os.path.exists(path):
             os.makedirs(path)
 
-        path = os.path.join(path, filename)
+        path1 = os.path.join(path, filename)
 
-        with open(path, "wb") as f:
+        with open(path1, "wb") as f:
             p.dump(self, f)
+
+        if save_bir:
+            bir = {}
+            for key, item in self.dictionary.items():
+                bir[key] = self.get_posting(key)
+            path2 = os.path.join(path, filename_bir)
+            with open(path2, "wb") as f:
+                p.dump((bir, self.N), f)
+
+        return
