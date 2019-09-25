@@ -64,13 +64,13 @@ To create an environment with the environment.yml file, navigate to the folder c
 
 2. ##### setup.py
 
-   This program updates ```graph.p``` by calculating the PageRank and save tf-idf table from contents of crawled web pages
+   This program uses the ```graph.p``` variable and calculates the PageRank and save tf-idf table from contents of crawled web pages. It will also write the binary inverted index table from the web pages' content stored in the ```Contents``` folder. If you want to try building these yourself, you can try running ```python3 setup.py```. Otherwise, all the necessary setup files are stored in the ```Data``` zip file. Simply unzip the folder before running search. 
 
 ### Search Engine Execution:
 
 ##### Session.py
 
-This program searches list of relevant web pages to the user query based on tf-idf inverted index and web graph.
+This program starts a new session for a client and supports searches of list of relevant web pages to the user query based on tf-idf inverted index and web graph.
 
 ##### main.py
 
@@ -79,6 +79,7 @@ Type ```python main.py``` into the terminal to run the search machine
 The program allows the user to choose from 3 options (**s**, **a**, **q**)
 
 - **s**: search
+   - For search, simply input any query as you would for Google :)
 - **a**: advance search
   - ```AND``` ```NOT``` ``OR`` keywords to search more accurately
 - **q**: quit the search machine
