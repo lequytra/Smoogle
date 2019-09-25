@@ -12,6 +12,8 @@ To create an environment with the environment.yml file, navigate to the folder c
 > ```random```  ```re```
 >
 > ```urllib```   ```validators```  ```requests```  ```http.client```  ```BeautifulSoup```  
+>
+> ```numpy```    ```matplotlib```  ```nltk```    ```rake``` 
 
 ### Supporting Classes:
 
