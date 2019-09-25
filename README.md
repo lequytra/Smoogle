@@ -1,4 +1,6 @@
-![Smoogle logo](C:\Users\stella\Documents\GitHub\Search-Engine\Smoogle logo.png)
+
+
+![Smoogle logo](https://github.com/lequytra/Search-Engine/blob/master/Smoogle%20logo.png](https://github.com/lequytra/Search-Engine/blob/master/Smoogle.png)
 
 ### Set Up Environment:
 To create an environment with the environment.yml file, navigate to the folder containing the environment file and type ```conda env create -f environment.yml``` into your terminal. To activate your environment, do ```conda activate env-name```. The environment in the yml file is named ```IR```. 
@@ -29,7 +31,7 @@ To create an environment with the environment.yml file, navigate to the folder c
 
 3. ##### Conversion.py
 
-   ```class Conversion``` builds expression Tree
+   ```class Conversion``` builds expression Tree to process query
 
 4. ##### PageRank.py
 
@@ -43,7 +45,7 @@ To create an environment with the environment.yml file, navigate to the folder c
 
 1. ##### WebCrawler.py
 
-   This program scrapes web pages starting from given seed url and its hyperlinks in the content and builds web graph while scraping. 
+   This program scrapes web pages starting from given seed url and its hyperlinks in the content and builds web graph while scraping 
 
    Output: 
 
@@ -60,17 +62,26 @@ To create an environment with the environment.yml file, navigate to the folder c
 
 2. ##### setup.py
 
-   This program updates ```graph.p```  by calculating the PageRank and save tf-idf table from contents of crawled web pages. 
+   This program updates ```graph.p``` by calculating the PageRank and save tf-idf table from contents of crawled web pages
 
 ### Search Engine Execution:
 
 ##### Session.py
 
-```search(self, query)```
-
-```advance_search(self, query)```
+This program searches list of relevant web pages to the user query based on tf-idf inverted index and web graph.
 
 ##### main.py
 
-Users of **Smoogle** have two options by typing ```python main.py``` into the terminal:
+Type ```python main.py``` into the terminal to run the search machine
+
+The program allows the user to choose from 3 options (**s**, **a**, **q**)
+
+- **s**: search
+- **a**: advance search
+  - ```AND``` ```NOT``` ``OR`` keywords to search more accurately
+- **q**: quit the search machine
+
+If the user selects search or advanced search, the program asks you to type query.
+
+
 
