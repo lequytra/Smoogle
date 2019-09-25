@@ -61,6 +61,9 @@ To create an environment with the environment.yml file, navigate to the folder c
    - ```id_url.csv``` and ```url_id.csv```: dictionary of web pages that is in the graph
    - ```c_id_url.csv``` and ```c_url_id.csv```: dictionary of web pages that is crawled
    - ```graph.p```: web graph storing ```Graph``` object
+   - ```bir.p```: the binary inverted table to search for documents from the relevant query. 
+   - ```tf-idf.p```: a 2D array to store the ```tf-idf``` scores for all ```(term, document)``` pairs.
+   - ```Pagerank_score.npy```: store a numpy array of Pagerank scores calculated based on the web graph. 
 
 2. ##### setup.py
 
