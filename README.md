@@ -19,25 +19,25 @@ To create an environment with the environment.yml file, navigate to the folder c
 
 1. ##### Graph.py
 
-   ```class Graph``` is used for constructing web graph object that is used for calculating PageRank
+   ```class Graph``` is used for constructing web graph object that is used for calculating PageRank.
 
 2. ##### BIR.py
 
-   ```class Doc``` stores information about the document after tf-idf  (term frequency-inverse document frequency)
+   ```class Doc``` stores information about the document for calculating tf-idf  (term frequency-inverse document frequency)
 
    - ```doc_id```: id of document
    - ```term_freq```: frequency of term in the document
    - ```most_common```:maximum frequency in the document
 
-   ```class BIR``` creates 2D ```numpy``` array with (term, ```Doc```) pair for every terms in the document lists
+   ```class BIR``` creates 2D ```numpy``` array with (term, ```Doc```) pair for every terms in the document lists. Moreover, it will also creates and stores the ```tf-idf``` scores for the given documents. 
 
 3. ##### Conversion.py
 
-   ```class Conversion``` builds expression Tree to process query
+   ```class Conversion``` converts the advanced search query into appropriate format and builds a expression Tree to process query.
 
 4. ##### PageRank.py
 
-   ```class PageRank``` updates the weight of given ```Graph``` based on the PageRank algorithm
+   ```class PageRank``` aims to estimate the importance/reliability of a given web page based on the PageRank algorithm.
 
 5. ##### text_processing_utils.py
 
