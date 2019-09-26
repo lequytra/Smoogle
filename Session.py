@@ -82,9 +82,12 @@ class Session:
         tf_idf = np.sum(tf_idf, axis=0)
 
         postings = [self.BIR[t] for t in kw if t in self.BIR]
-
-        retrieved_doc = reduce(np.union1d, postings).astype(int)
-
+        try:
+            retrieved_doc = reduce(np.union1d, postings).astype(int)
+        except TypeError:
+            print("Sorry! We found 0 document that matches your query. \n\n Can you try searching with other keywords?!")
+            return [], []
+            
         pagerank_score = self.scores[retrieved_doc]
         retrieved_tf = tf_idf[retrieved_doc]
 
