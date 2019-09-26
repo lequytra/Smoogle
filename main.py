@@ -1,6 +1,7 @@
 from Session import Session
 import os
 import sys
+import csv
 
 def main():
     se = Session()
@@ -10,25 +11,33 @@ def main():
     tf_idf = os.path.join(curr_dir, 'Data', 'tf_idx.p')
 
     try:
+        print ("Setting up Smoogle...")
         se.load(path_bir, pscore_path, tf_idf)
     except FileNotFoundError:
         print("Cannot find necessary files!!! Try running setup file??!")
         return False
     
+    ciu = csv. reader(open(os.path.join(curr_dir, 'Data', 'c_id_url.csv')))
+    crawl_id_url = {}
+    for row in ciu:
+        crawl_id_url.update({int(row[0]): row[1]})
+
     running = True
     print("Welcome to Smoogle Search: ")
     while running:
         print("Please enter options (s/a/q): ")
         print("s - search a - advanced search q - quit")
         arg = input()
-        print(arg)
         if arg != False:
             if arg == 's' or arg == 'a':
                 query = input("Please enter search query: ")
+                num = input("Please enter the number of web pages to show ")
                 if (arg == 's'):
-                    se.search(query)
+                    results = se.search(query, int(num))
                 else:
-                    se.advance_search(query)
+                    results = se.advance_search(query, int(num))
+                for result in results[0]:
+                    print(crawl_id_url.get(result))
             elif arg == 'q':
                 running = False
             else:
