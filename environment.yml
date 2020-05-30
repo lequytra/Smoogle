@@ -91,5 +91,6 @@ dependencies:
   - pip:
     - beautifulsoup4==4.8.0
     - soupsieve==1.9.3
+    - validators
 prefix: /Users/tranle/anaconda3/envs/IR
 

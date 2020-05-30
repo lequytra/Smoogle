@@ -1,14 +1,14 @@
 from collections import defaultdict, Counter
 import numpy as np
-from functools import reduce
 import os
 import pickle as p
 from functools import reduce
 
+
 class Doc:
 
-    def __init__(self, id, term_freq, most_common):
-        self.doc_id = id
+    def __init__(self, idx, term_freq, most_common):
+        self.doc_id = int(idx)
         self.term_freq = term_freq
         self.most_common = most_common
 
@@ -24,9 +24,9 @@ class Doc:
 
 class BIR:
     def __init__(self, normalization_factor=2):
-        self.dictionary = defaultdict(tuple)
+        self.dictionary = dict()
         self.alpha = normalization_factor
-        self.N = 0
+        self.N = 400
 
     def insert_document(self, doc, idx):
         """
@@ -42,8 +42,15 @@ class BIR:
                 - doc: A list of words contained in the document.
                 - idx: The unique index assigned to the document.
         """
+        self.N += 1
+        if not doc or len(doc) == 0:
+            return
         c = Counter(doc)
         # Get the highest frequency
+
+        if not c:
+            return
+
         most_freq = c.most_common(1)[0][1]
 
         for term, freq in c.items():
@@ -54,7 +61,7 @@ class BIR:
                 f, postings = self.dictionary[term]
 
                 postings.append(document)
-                f += 1
+                self.dictionary[term] = (f + 1, postings)
 
             else:
                 f = 1
@@ -62,12 +69,18 @@ class BIR:
                 # Add the term and its information to the dictionary
                 self.dictionary[term] = (f, postings)
 
-                self.N += 1
+
 
         return
 
+    def intersect_by_terms(self, term1, term2):
+
+        p1, p2 = self.get_ids_by_term(term1), self.get_ids_by_term(term2)
+
+        return np.intersect1d(p1, p2, assume_unique=True).astype(int)
+
     def intersect(self, p1, p2):
-        return np.intersect1d(p1, p2, assume_unique=True)
+        return np.intersect1d(p1, p2, assume_unique=True).astype(int)
 
     def reduce_intersect(self, terms):
         """
@@ -82,11 +95,20 @@ class BIR:
         terms, _ = self._get_freq(terms)
         del _
         # Get the postings of the term with the shortest frequency
-        postings = [[doc.get_id() for doc in self.dictionary[t][1]] for t in terms]
+        postings = [self.get_ids_by_term(t) for t in terms]
 
-        return reduce(np.intersect1d, postings)
+        return reduce(np.intersect1d, postings).astype(int)
 
-    def union(self, terms):
+    def union_by_terms(self, term1, term2):
+
+        p1, p2 = self.get_ids_by_term(term1), self.get_ids_by_term(term2)
+
+        return np.union1d(p1, p2).astype(int)
+
+    def union(self, p1, p2):
+        return np.union1d(p1, p2).astype(int)
+
+    def reduce_union(self, terms):
         """
             Return the document intersections of
             a list of terms
@@ -94,12 +116,18 @@ class BIR:
             Param:
                 - Terms: Array of terms/words
         """
-        postings = [[doc.get_id() for doc in self.dictionary[t][1]] for t in terms]
+        postings = [self.get_ids_by_term(t) for t in terms]
 
-        return reduce(np.union1d, postings)
+        return reduce(np.union1d, postings).astype(int)
+
+    def diff_by_terms(self, term1, term2):
+
+        p1, p2 = self.get_ids_by_term(term1), self.get_ids_by_term(term2)
+
+        return np.setdiff1d(p1, p2, assume_unique=True).astype(int)
 
     def diff(self, p1, p2):
-        return np.setdiff1d(p1, p2, assume_unique=True)
+        return np.setdiff1d(p1, p2, assume_unique=True).astype(int)
 
     def _get_freq(self, terms):
         """
@@ -123,9 +151,9 @@ class BIR:
         """
 
         if term in self.dictionary:
-            return [doc.doc_id for doc in self.dictionary[term][1]]
+            return np.array([int(doc.doc_id) for doc in self.dictionary[term][1]])
         else:
-            return []
+            return np.empty(shape=(0,))
 
     def get_scores(self, term):
         """
@@ -150,6 +178,10 @@ class BIR:
         else:
             print("Term is not in dictionary!")
             return -1
+
+    def get_ids_by_term(self, term):
+
+        return [doc.get_id() for doc in self.dictionary[term][1] if term in self.dictionary]
 
     def get_term(self, term):
 
@@ -207,9 +239,11 @@ class BIR:
             print("Cannot save file")
             return False
 
-    def save(self, filename=None, path=None):
+    def save(self, save_bir=True, filename=None, filename_bir=None, path=None):
         if not filename:
-            filename = 'bir.p'
+            filename = 'document_data.p'
+        if not filename_bir:
+            filename_bir = 'bir.p'
 
         if not path:
             path = os.path.join(os.getcwd(), 'Data')
@@ -219,7 +253,17 @@ class BIR:
         if not os.path.exists(path):
             os.makedirs(path)
 
-        path = os.path.join(path, filename)
+        path1 = os.path.join(path, filename)
 
-        with open(path, "wb") as f:
+        with open(path1, "wb") as f:
             p.dump(self, f)
+
+        if save_bir:
+            bir = {}
+            for key, item in self.dictionary.items():
+                bir[key] = self.get_posting(key)
+            path2 = os.path.join(path, filename_bir)
+            with open(path2, "wb") as f:
+                p.dump((bir, self.N), f)
+
+        return
